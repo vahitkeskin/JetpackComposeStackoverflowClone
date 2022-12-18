@@ -1,4 +1,4 @@
-package com.vahitkeskin.jetpackcomposestackoverflowclone
+package com.vahitkeskin.jetpackcomposestackoverflowclone.views
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically

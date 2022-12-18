@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id "dagger.hilt.android.plugin"
 }
 
 android {
@@ -63,4 +65,21 @@ dependencies {
 
     // Navigation
     implementation "androidx.navigation:navigation-compose:$compose_navigation"
+
+    //Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    //Hilt Navigation Compose
+    implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose_version"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+
+    //Flipper
+    debugImplementation 'com.facebook.flipper:flipper-network-plugin:0.81.0'
+    debugImplementation 'com.facebook.flipper:flipper:0.81.0'
+    debugImplementation 'com.facebook.soloader:soloader:0.10.1'
 }
