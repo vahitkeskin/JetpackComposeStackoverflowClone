@@ -1,4 +1,4 @@
-package com.vahitkeskin.jetpackcomposestackoverflowclone.model.home
+package com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel
 
 data class Owner(
     val accept_rate: Int,

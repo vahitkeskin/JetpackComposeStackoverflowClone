@@ -1,20 +1,25 @@
-package com.vahitkeskin.jetpackcomposestackoverflowclone.views
+package com.vahitkeskin.jetpackcomposestackoverflowclone.component
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowOrange
+import com.vahitkeskin.jetpackcomposestackoverflowclone.views.NavigationItem
 
 /**
  * @authot: Vahit Keskin
@@ -44,11 +49,36 @@ fun BottomBar(
                     BottomNavigationItem(
                         icon = {
                             item.icon?.let { icon ->
-                                Icon(painter = painterResource(id = icon), contentDescription = null)
+                                Icon(
+                                    modifier = Modifier.padding(
+                                        bottom = if (currentRoute == item.route) 4.dp else 0.dp
+                                    ),
+                                    painter = painterResource(id = icon),
+                                    contentDescription = null
+                                )
                             }
                         },
                         label = {
-                            Text(text = item.title)
+                            if (currentRoute == item.route) {
+                                Card(
+                                    modifier = Modifier
+                                        .clip(RoundedCornerShape(20))
+                                        .background(StackoverflowOrange),
+                                    content = {
+                                        Text(
+                                            modifier = Modifier
+                                                .background(StackoverflowOrange)
+                                                .padding(
+                                                    start = 5.dp,
+                                                    end = 5.dp
+                                                ),
+                                            text = item.title
+                                        )
+                                    }
+                                )
+                            } else {
+                                Text(text = item.title)
+                            }
                         },
                         selected = currentRoute == item.route,
                         selectedContentColor = Color.LightGray,

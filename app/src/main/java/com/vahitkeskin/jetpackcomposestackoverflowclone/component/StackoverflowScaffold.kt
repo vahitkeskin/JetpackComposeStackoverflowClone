@@ -1,13 +1,16 @@
-package com.vahitkeskin.jetpackcomposestackoverflowclone.views
+package com.vahitkeskin.jetpackcomposestackoverflowclone.component
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.BottomBarState
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.StackoverflowComposable
+import com.vahitkeskin.jetpackcomposestackoverflowclone.views.BottomBarState
 
 /**
  * @authot: Vahit Keskin
@@ -15,9 +18,12 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.StackoverflowCompo
  */
 
 @Composable
-fun BottomBarStackOverflow() {
+fun StackoverflowScaffold() {
     val navController = rememberNavController()
     Scaffold(
+        topBar = {
+            StackoverflowTopAppBar()
+        },
         bottomBar = {
             BottomBar(
                 navController = navController,

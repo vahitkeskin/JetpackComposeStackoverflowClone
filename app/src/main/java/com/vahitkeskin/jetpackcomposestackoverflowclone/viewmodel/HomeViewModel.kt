@@ -4,12 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vahitkeskin.jetpackcomposestackoverflowclone.model.home.HomeModel
+import com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel.HomeModel
 import com.vahitkeskin.jetpackcomposestackoverflowclone.repository.MainRepository
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.State
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package com.vahitkeskin.jetpackcomposestackoverflowclone.utils
+package com.vahitkeskin.jetpackcomposestackoverflowclone.views
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains
 
 /**
  * @authot: Vahit Keskin
@@ -29,11 +30,8 @@ fun BottomBarState(
         Contains.USERS_SCREEN -> {
             bottomBarState.value = true
         }
-        Contains.HOME_DETAIL_SCREEN -> {
-            bottomBarState.value = false
-        }
         else -> {
-            bottomBarState.value = true
+            bottomBarState.value = false
         }
     }
     return bottomBarState

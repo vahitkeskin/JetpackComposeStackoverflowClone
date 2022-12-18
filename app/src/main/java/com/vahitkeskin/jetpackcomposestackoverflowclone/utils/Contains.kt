@@ -7,8 +7,9 @@ package com.vahitkeskin.jetpackcomposestackoverflowclone.utils
 object Contains {
     //OTHERS
     const val BASE_URL = "https://api.stackexchange.com"
-    const val APP_NAME = "JetpackComposeStackoverflowClone"
+    const val APP_NAME = "Stackoverflow Clone"
     const val PACKAGE_NAME = "com.vahitkeskin.jetpackcomposestackoverflowclone"
+    const val UTF_8 = "UTF-8"
 
     //SCREENS
     const val HOME_SCREEN = "home"

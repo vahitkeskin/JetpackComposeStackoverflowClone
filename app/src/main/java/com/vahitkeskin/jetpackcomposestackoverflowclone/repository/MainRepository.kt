@@ -1,7 +1,7 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.repository
 
 import com.vahitkeskin.jetpackcomposestackoverflowclone.api.Service
-import com.vahitkeskin.jetpackcomposestackoverflowclone.model.home.HomeModel
+import com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel.HomeModel
 import javax.inject.Inject
 
 /**

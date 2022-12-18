@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import com.vahitkeskin.jetpackcomposestackoverflowclone.component.StackoverflowScaffold
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.JetpackComposeStackoverflowCloneTheme
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains.APP_NAME
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,8 +16,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            JetpackComposeStackoverflowCloneTheme {
-                BottomBarStackOverflow()
+            JetpackComposeStackoverflowCloneTheme(
+                darkTheme = true
+            ) {
+                StackoverflowScaffold()
             }
         }
     }
@@ -29,7 +32,9 @@ class MainActivity : ComponentActivity() {
 )
 @Composable
 fun BottomBarStackOverflowPreview() {
-    JetpackComposeStackoverflowCloneTheme {
-        BottomBarStackOverflow()
+    JetpackComposeStackoverflowCloneTheme(
+        darkTheme = true
+    ) {
+        StackoverflowScaffold()
     }
 }

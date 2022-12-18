@@ -1,6 +1,6 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.api
 
-import com.vahitkeskin.jetpackcomposestackoverflowclone.model.home.HomeModel
+import com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel.HomeModel
 import retrofit2.http.GET
 
 /**
