@@ -1,0 +1,4 @@
+ext {
+    compose_navigation = '2.5.3'
+    compose_ui_version = '1.3.2'
+}
