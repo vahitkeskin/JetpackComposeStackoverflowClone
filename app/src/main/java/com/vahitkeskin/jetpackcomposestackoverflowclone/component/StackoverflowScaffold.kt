@@ -1,8 +1,5 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.component
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
@@ -19,22 +16,27 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.views.BottomBarState
 
 @Composable
 fun StackoverflowScaffold() {
-    val navController = rememberNavController()
+    val navHostController = rememberNavController()
+    val bottomBarState = BottomBarState(navController = navHostController)
+
     Scaffold(
         topBar = {
-            StackoverflowTopAppBar()
+            StackoverflowTopAppBar(
+                isBackButton = bottomBarState.value,
+                navController = navHostController
+            )
         },
         bottomBar = {
-            BottomBar(
-                navController = navController,
-                bottomBarState = BottomBarState(navController = navController)
+            StackoverflowBottomBar(
+                navController = navHostController,
+                bottomBarState = bottomBarState
             )
         },
         content = { paddingValues ->
             Box(
                 modifier = Modifier.padding(paddingValues)
             ) {
-                StackoverflowComposable(navController = navController)
+                StackoverflowComposable(navController = navHostController)
             }
         }
     )

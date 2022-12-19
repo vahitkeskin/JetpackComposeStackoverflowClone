@@ -1,4 +1,4 @@
-package com.vahitkeskin.jetpackcomposestackoverflowclone.screens
+package com.vahitkeskin.jetpackcomposestackoverflowclone.screens.users
 
 import androidx.compose.runtime.Composable
 

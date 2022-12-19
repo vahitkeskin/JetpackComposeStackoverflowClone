@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -27,12 +27,13 @@ fun HomeScreenItem(
     item: Item
 ) {
     Card(
-        modifier = Modifier.padding(15.dp).clickable {
+        modifier = Modifier.padding(top = 12.dp, bottom = 6.dp, end = 15.dp, start = 15.dp).clickable {
             navController.navigate(
                 route = NavigationItem.HomeDetail.route.plus("/${item.title.encode()}")
             )
         },
-        elevation = 10.dp
+        elevation = 10.dp,
+        shape = RoundedCornerShape(10.dp)
     ) {
         Column(
             modifier = Modifier.padding(10.dp)

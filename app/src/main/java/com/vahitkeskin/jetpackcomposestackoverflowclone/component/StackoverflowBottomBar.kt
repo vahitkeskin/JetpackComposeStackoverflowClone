@@ -1,23 +1,35 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.component
 
+import android.os.Build.VERSION.SDK_INT
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
+import coil.ImageLoader
+import coil.compose.rememberAsyncImagePainter
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
+import coil.request.ImageRequest
+import coil.size.Size
+import com.vahitkeskin.jetpackcomposestackoverflowclone.R
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowOrange
 import com.vahitkeskin.jetpackcomposestackoverflowclone.views.NavigationItem
 
@@ -27,10 +39,12 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.views.NavigationItem
  */
 
 @Composable
-fun BottomBar(
+fun StackoverflowBottomBar(
     navController: NavController,
     bottomBarState: MutableState<Boolean>
 ) {
+    val context = LocalContext.current
+    var clickUserIcon by remember { mutableStateOf(true) }
     val items = listOf(
         NavigationItem.Home,
         NavigationItem.Questions,
@@ -49,13 +63,40 @@ fun BottomBar(
                     BottomNavigationItem(
                         icon = {
                             item.icon?.let { icon ->
-                                Icon(
-                                    modifier = Modifier.padding(
-                                        bottom = if (currentRoute == item.route) 4.dp else 0.dp
-                                    ),
-                                    painter = painterResource(id = icon),
-                                    contentDescription = null
-                                )
+                                if (clickUserIcon && item.route == NavigationItem.Users.route) {
+                                    val imageLoader = ImageLoader.Builder(context)
+                                        .components {
+                                            if (SDK_INT >= 28) {
+                                                add(ImageDecoderDecoder.Factory())
+                                            } else {
+                                                add(GifDecoder.Factory())
+                                            }
+                                        }
+                                        .build()
+                                    Image(
+                                        contentScale = ContentScale.Crop,
+                                        modifier = Modifier
+                                            .size(25.dp)
+                                            .clip(CircleShape)
+                                            .border(1.dp, Color.Transparent, CircleShape),
+                                        painter = rememberAsyncImagePainter(
+                                            ImageRequest.Builder(context)
+                                                .data(data = R.drawable.user_search_gif1)
+                                                .apply(block = {
+                                                    size(Size.ORIGINAL)
+                                                }).build(), imageLoader = imageLoader
+                                        ),
+                                        contentDescription = null
+                                    )
+                                } else {
+                                    Icon(
+                                        modifier = Modifier.padding(
+                                            bottom = if (currentRoute == item.route) 4.dp else 0.dp
+                                        ),
+                                        painter = painterResource(id = icon),
+                                        contentDescription = null
+                                    )
+                                }
                             }
                         },
                         label = {
@@ -84,6 +125,7 @@ fun BottomBar(
                         selectedContentColor = Color.LightGray,
                         unselectedContentColor = Color.Gray,
                         onClick = {
+                            clickUserIcon = item.route != NavigationItem.Users.route
                             navController.navigate(item.route) {
                                 popUpTo(navController.graph.findStartDestination().id) {
                                     saveState = true

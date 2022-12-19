@@ -1,6 +1,11 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.utils
 
 import android.util.Base64
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains.UTF_8
 
 /**
@@ -15,4 +20,20 @@ fun String.encode(): String {
 fun String.decode(): String {
     //After
     return Base64.decode(this, Base64.DEFAULT).toString(charset(UTF_8))
+}
+
+/**
+ * noRippleClickable: Disable ripple effect when clicking
+ */
+fun Modifier.noRippleClickable(
+    onClick: () -> Unit
+): Modifier = composed {
+    clickable(
+        indication = null,
+        interactionSource = remember {
+            MutableInteractionSource()
+        }
+    ) {
+        onClick()
+    }
 }

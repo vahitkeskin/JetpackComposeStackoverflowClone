@@ -1,4 +1,4 @@
-package com.vahitkeskin.jetpackcomposestackoverflowclone.screens
+package com.vahitkeskin.jetpackcomposestackoverflowclone.screens.questions
 
 import androidx.compose.runtime.Composable
 

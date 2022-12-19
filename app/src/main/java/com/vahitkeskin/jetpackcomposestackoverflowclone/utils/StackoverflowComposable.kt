@@ -11,6 +11,8 @@ import androidx.navigation.navArgument
 import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.*
 import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.home.HomeScreen
 import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.homedetail.HomeDetailScreen
+import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.questions.QuestionsScreen
+import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.users.UsersScreen
 import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.HomeViewModel
 import com.vahitkeskin.jetpackcomposestackoverflowclone.views.NavigationItem
 
