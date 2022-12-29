@@ -5,7 +5,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.*
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel.HomeModel
 import com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.HomeViewModel
 
@@ -34,7 +33,7 @@ fun HomeScreen(
     if (homeModelState.size > 0) {
         LazyColumn {
             items(homeModelState) { item ->
-                HomeScreenItem(navController, item) {
+                HomeScreenItem(item) {
                     navigateToDetail.invoke(it)
                 }
             }

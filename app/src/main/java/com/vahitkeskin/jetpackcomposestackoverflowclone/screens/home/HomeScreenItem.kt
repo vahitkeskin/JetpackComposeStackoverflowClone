@@ -7,16 +7,18 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel.HomeModel
+import com.vahitkeskin.jetpackcomposestackoverflowclone.R
 import com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowBlue
-import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.encode
-import com.vahitkeskin.jetpackcomposestackoverflowclone.views.NavigationItem
 
 /**
  * @authot: Vahit Keskin
@@ -24,10 +26,10 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.views.NavigationItem
  */
 @Composable
 fun HomeScreenItem(
-    navController: NavController,
     item: Item,
     navigateToDetail: (Item) -> Unit
 ) {
+    val context = LocalContext.current
     Card(
         modifier = Modifier
             .padding(top = 12.dp, bottom = 6.dp, end = 15.dp, start = 15.dp)

@@ -1,5 +1,8 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.utils
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.res.Resources
 import android.util.Base64
 import android.util.DisplayMetrics
@@ -41,4 +44,10 @@ fun Modifier.noRippleClickable(
     ) {
         onClick()
     }
+}
+
+fun String.copyText(context: Context){
+    val myClipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    val myClip: ClipData = ClipData.newPlainText("Label", this)
+    myClipboard.setPrimaryClip(myClip)
 }
