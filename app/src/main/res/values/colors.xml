@@ -15,4 +15,5 @@
     <color name="stackoverflow_blue">#328DD1</color>
     <color name="stackoverflow_tags_bg">#425460</color>
     <color name="stackoverflow_tags_text">#CDE0EE</color>
+    <color name="stackoverflow_code_bc">#1D1B1B</color>
 </resources>

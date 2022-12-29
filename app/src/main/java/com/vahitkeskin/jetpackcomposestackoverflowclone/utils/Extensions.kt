@@ -1,6 +1,11 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.utils
 
+import android.content.res.Resources
 import android.util.Base64
+import android.util.DisplayMetrics
+import android.view.Display
+import android.view.Window
+import android.view.WindowManager
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.runtime.remember

@@ -9,6 +9,6 @@ import retrofit2.http.GET
  */
 interface Service {
     //Home Screen end-point
-    @GET("/2.3/questions?order=desc&sort=activity&site=stackoverflow")
+    @GET("/2.3/questions?order=desc&sort=activity&site=stackoverflow&filter=!6Wfm_gSyj6iTS")//filter=!6Wfm_gSyj6iTS
     suspend fun getHome(): HomeModel
 }

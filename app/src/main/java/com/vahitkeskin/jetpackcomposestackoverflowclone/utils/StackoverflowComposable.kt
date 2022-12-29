@@ -8,11 +8,13 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.*
 import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.home.HomeScreen
 import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.homedetail.HomeDetailScreen
 import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.questions.QuestionsScreen
 import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.users.UsersScreen
+import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Utility.toJson
 import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.HomeViewModel
 import com.vahitkeskin.jetpackcomposestackoverflowclone.views.NavigationItem
 
@@ -36,7 +38,10 @@ fun StackoverflowComposable(
         ) {
             HomeScreen(
                 navController = navController,
-                homeViewModel = homeViewModel
+                homeViewModel = homeViewModel,
+                navigateToDetail = {
+                    navController.navigate(NavigationItem.HomeDetail.route.plus("?homeDetail=${it.toJson()}"))
+                }
             )
         }
         composable(
@@ -52,14 +57,9 @@ fun StackoverflowComposable(
             }
         )
         composable(
-            route = NavigationItem.HomeDetail.route+"/{title}",
-            arguments = listOf(navArgument("title") {
-                type = NavType.StringType
-            }),
-            content = { backStackEntry ->
-                val titleEncode = backStackEntry.arguments?.getString("title")
-                val titleDecode = titleEncode?.decode()
-                HomeDetailScreen(title = titleDecode)
+            NavigationItem.HomeDetail.route.plus("?homeDetail={homeDetail}"),
+            content = {
+                HomeDetailScreen(viewModel = hiltViewModel())
             }
         )
     }

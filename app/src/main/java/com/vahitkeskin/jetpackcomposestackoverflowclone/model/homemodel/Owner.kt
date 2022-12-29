@@ -1,7 +1,10 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Owner(
-    val accept_rate: Int,
     val account_id: Int,
     val display_name: String,
     val link: String,
@@ -9,4 +12,4 @@ data class Owner(
     val reputation: Int,
     val user_id: Int,
     val user_type: String
-)
+) : Parcelable

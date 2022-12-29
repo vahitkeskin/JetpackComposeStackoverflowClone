@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id "dagger.hilt.android.plugin"
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -88,5 +89,11 @@ dependencies {
     //Gif
     implementation("io.coil-kt:coil:2.0.0-rc02")
     implementation "io.coil-kt:coil-gif:2.1.0"
+
+    //JSOUP
+    implementation "org.jsoup:jsoup:1.15.1"
+
+    //CodeView
+    implementation "com.github.tiagohm:CodeView:0.4.0"
 
 }

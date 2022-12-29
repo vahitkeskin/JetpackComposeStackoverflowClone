@@ -1,6 +1,8 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.views
 
 import android.os.Bundle
+import android.util.DisplayMetrics
+import android.view.Display
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
@@ -15,6 +17,16 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val display: Display = windowManager.defaultDisplay
+        val outMetrics = DisplayMetrics()
+        display.getMetrics(outMetrics)
+        val density: Float = resources.displayMetrics.density
+        val dpHeight = outMetrics.heightPixels / density
+        val dpWidth = outMetrics.widthPixels / density
+
+        println("dpHeight and dpWidth: $dpHeight and $dpWidth")
+
         setContent {
             JetpackComposeStackoverflowCloneTheme(
                 darkTheme = true

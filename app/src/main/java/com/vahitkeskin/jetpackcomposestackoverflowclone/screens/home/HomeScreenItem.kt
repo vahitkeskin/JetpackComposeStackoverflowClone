@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel.HomeModel
 import com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowBlue
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.encode
@@ -24,14 +25,16 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.views.NavigationItem
 @Composable
 fun HomeScreenItem(
     navController: NavController,
-    item: Item
+    item: Item,
+    navigateToDetail: (Item) -> Unit
 ) {
     Card(
-        modifier = Modifier.padding(top = 12.dp, bottom = 6.dp, end = 15.dp, start = 15.dp).clickable {
-            navController.navigate(
-                route = NavigationItem.HomeDetail.route.plus("/${item.title.encode()}")
-            )
-        },
+        modifier = Modifier
+            .padding(top = 12.dp, bottom = 6.dp, end = 15.dp, start = 15.dp)
+            .clickable {
+                navigateToDetail.invoke(item)
+                //navController.navigate(route = NavigationItem.HomeDetail.route.plus("/${item.body.encode()}"))
+            },
         elevation = 10.dp,
         shape = RoundedCornerShape(10.dp)
     ) {
