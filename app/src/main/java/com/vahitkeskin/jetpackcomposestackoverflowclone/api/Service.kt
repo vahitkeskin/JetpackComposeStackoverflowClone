@@ -29,6 +29,7 @@ interface Service {
     // -> User Single https://api.stackexchange.com/2.3/users?order=desc&sort=reputation&inname=vahit%20keskin&site=stackoverflow
     // -> Users all https://api.stackexchange.com/2.3/users?order=desc&sort=reputation&site=stackoverflow
 
+    //https://johncodeos.com/how-to-make-post-get-put-and-delete-requests-with-retrofit-using-kotlin/
     @GET("/2.3/users?order=desc&sort=reputation&site=stackoverflow")
     suspend fun getUsers(
         @Query("inname") inname: String = "vahit keskin"

@@ -11,7 +11,7 @@ import javax.inject.Inject
 class UsersRepository @Inject constructor(
     private val service: Service
 ) {
-    suspend operator fun invoke(): UsersModel {
-        return service.getUsers()
+    suspend operator fun invoke(string: String): UsersModel {
+        return service.getUsers(string)
     }
 }
