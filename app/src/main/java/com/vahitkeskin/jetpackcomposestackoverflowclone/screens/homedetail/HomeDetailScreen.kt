@@ -23,7 +23,6 @@ import br.tiagohm.codeview.Language
 import br.tiagohm.codeview.Theme
 import coil.compose.rememberAsyncImagePainter
 import com.vahitkeskin.jetpackcomposestackoverflowclone.R
-import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.home.HomeScreenOwner
 import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.home.HomeScreenTagsItem
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.*
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.noRippleClickable
@@ -80,7 +79,7 @@ fun HomeDetailScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Icon(
-                    painterResource(id = R.drawable.ic_top),
+                    painterResource(id = R.drawable.ic_point_up),
                     modifier = Modifier.noRippleClickable {
                         pointClick = 1
                         if ((score ?: 0) <= (viewState.data?.score ?: 0)) {
@@ -97,7 +96,7 @@ fun HomeDetailScreen(
                 )
                 Text(text = score.toString(), modifier = Modifier.padding(top = 5.dp, bottom = 5.dp))
                 Icon(
-                    painterResource(id = R.drawable.ic_bottom),
+                    painterResource(id = R.drawable.ic_point_down),
                     modifier = Modifier.noRippleClickable {
                         pointClick = 2
                         if ((score ?: 0) >= (viewState.data?.score ?: 0)) {
