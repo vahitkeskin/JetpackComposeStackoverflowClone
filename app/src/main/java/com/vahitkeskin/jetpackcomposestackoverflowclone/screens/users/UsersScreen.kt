@@ -31,6 +31,7 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.UsersViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import androidx.lifecycle.lifecycleScope
 
 /**
  * @authot: Vahit Keskin
@@ -47,13 +48,17 @@ fun UsersScreen(
     val coroutineScope = rememberCoroutineScope()
     var job: Job? = null
 
-    if (state) {
+    fun searchQuery(searchQuery: String ?= null) {
         coroutineScope.launch {
             homeModelState.clear()
-            usersViewModel.home(searchState).items.forEach { item ->
+            usersViewModel.home(searchQuery.orEmpty()).items.forEach { item ->
                 homeModelState.add(item)
             }
         }
+    }
+
+    if (state) {
+        searchQuery()
         state = false
     }
     Column {
@@ -67,9 +72,8 @@ fun UsersScreen(
                 searchState = newText
                 job?.cancel()
                 job = coroutineScope.launch {
-                    state = true
                     delay(1000)
-                    state = false
+                    searchQuery(searchState)
                 }
             },
             label = {

@@ -16,4 +16,16 @@ object Contains {
     const val QUESTIONS_SCREEN = "questions"
     const val USERS_SCREEN = "users"
     const val HOME_DETAIL_SCREEN = "home_detail"
+
+    //ENDPOINTS
+    const val SITE = "site"
+    const val STACKOVERFLOW = "stackoverflow"
+    const val INNAME = "inname"
+    const val SORT = "sort"
+    const val REPUTATION = "reputation"
+    const val ACTIVITY = "activity"
+    const val ORDER = "order"
+    const val DESC = "desc"
+    const val FILTER = "filter"
+    const val BODY = "!6Wfm_gSyj6iTS"
 }
