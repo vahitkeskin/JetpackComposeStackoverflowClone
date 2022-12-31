@@ -10,6 +10,7 @@ object Contains {
     const val APP_NAME = "Stackoverflow Clone"
     const val PACKAGE_NAME = "com.vahitkeskin.jetpackcomposestackoverflowclone"
     const val UTF_8 = "UTF-8"
+    const val FILTER_BY_USER = "Filter by user"
 
     //SCREENS
     const val HOME_SCREEN = "home"

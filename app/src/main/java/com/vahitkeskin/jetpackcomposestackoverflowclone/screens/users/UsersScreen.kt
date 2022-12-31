@@ -1,6 +1,5 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.screens.users
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -12,8 +11,8 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -21,17 +20,15 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.rememberAsyncImagePainter
 import com.vahitkeskin.jetpackcomposestackoverflowclone.R
 import com.vahitkeskin.jetpackcomposestackoverflowclone.model.usersmodel.Item
-import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowBlue
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowPointSelect
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowPointUnSelect
+import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains
 import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.UsersViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import androidx.lifecycle.lifecycleScope
 
 /**
  * @authot: Vahit Keskin
@@ -65,8 +62,7 @@ fun UsersScreen(
         OutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 12.dp, bottom = 6.dp, end = 15.dp, start = 15.dp)
-                .border(1.dp, StackoverflowPointUnSelect, RoundedCornerShape(5.dp)),
+                .padding(top = 12.dp, bottom = 6.dp, end = 15.dp, start = 15.dp),
             value = searchState,
             onValueChange = { newText ->
                 searchState = newText
@@ -78,7 +74,7 @@ fun UsersScreen(
             },
             label = {
                 Text(
-                    text = "Filter by user",
+                    text = Contains.FILTER_BY_USER,
                     color = Color.LightGray,
                     fontSize = 14.sp
                 )
@@ -94,20 +90,24 @@ fun UsersScreen(
                 unfocusedBorderColor = Color.LightGray
             ),
             leadingIcon = {
-                if (state) {
-                    CircularProgressIndicator(
-                        modifier = Modifier
-                            .size(20.dp)
-                            .padding(end = 10.dp),
-                        strokeWidth = 1.dp,
-                        color = StackoverflowPointSelect
-                    )
-                } else {
-                    Icon(
-                        Icons.Default.Search,
-                        contentDescription = null,
-                        tint = Color.LightGray
-                    )
+                Box(
+                    contentAlignment = Alignment.Center
+                ) {
+                    if (homeModelState.size > 0) {
+                        Icon(
+                            Icons.Default.Search,
+                            contentDescription = null,
+                            tint = Color.LightGray
+                        )
+                    } else {
+                        CircularProgressIndicator(
+                            modifier = Modifier
+                                .size(40.dp)
+                                .padding(10.dp),
+                            strokeWidth = 2.dp,
+                            color = StackoverflowPointUnSelect
+                        )
+                    }
                 }
             },
             trailingIcon = {
@@ -179,35 +179,6 @@ fun UsersScreen(
                 items(homeModelState) { item ->
                     UsersItem(item)
                 }
-            }
-        }
-    }
-}
-
-@Composable
-fun UsersItem(item: Item) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 12.dp, bottom = 6.dp, end = 15.dp, start = 15.dp),
-        elevation = 10.dp,
-        shape = RoundedCornerShape(10.dp)
-    ) {
-        Row(
-            modifier = Modifier.padding(10.dp)
-        ) {
-            Image(
-                modifier = Modifier
-                    .size(80.dp)
-                    .clip(RoundedCornerShape(5.dp)),
-                painter = rememberAsyncImagePainter(model = item.profile_image),
-                contentDescription = null
-            )
-            Spacer(modifier = Modifier.padding(5.dp))
-            Column {
-                Text(text = item.display_name.orEmpty(), color = StackoverflowBlue)
-                Text(text = item.location.orEmpty())
-                Text(text = item.reputation.toString().orEmpty())
             }
         }
     }

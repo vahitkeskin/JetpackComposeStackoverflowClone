@@ -21,4 +21,7 @@ interface Service {
     //https://api.stackexchange.com/2.3/search/advanced?order=desc&sort=activity&q=Endpoint%20to%20access%20post%20detail%20on%20api.stackexchange%20site%20for%20Android&site=stackoverflow&filter=!nOedRLbBQj
 
     //https://johncodeos.com/how-to-make-post-get-put-and-delete-requests-with-retrofit-using-kotlin/
+
+    //Tags: user_id -> 2887218 and https://api.stackexchange.com/2.3/users/2887218/tags?order=desc&sort=popular&site=stackoverflow
+
 }
