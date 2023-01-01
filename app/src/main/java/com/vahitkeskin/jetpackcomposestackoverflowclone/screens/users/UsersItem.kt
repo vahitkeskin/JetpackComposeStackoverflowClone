@@ -1,48 +1,131 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.screens.users
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.layoutId
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ExperimentalMotionApi
+import androidx.constraintlayout.compose.MotionLayout
+import androidx.constraintlayout.compose.MotionScene
 import coil.compose.rememberAsyncImagePainter
+import com.vahitkeskin.jetpackcomposestackoverflowclone.R
 import com.vahitkeskin.jetpackcomposestackoverflowclone.model.usersmodel.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowBlue
+import kotlinx.coroutines.*
 
 /**
  * @authot: Vahit Keskin
  * creared on 31.12.2022
  */
 
+@OptIn(ExperimentalMotionApi::class)
 @Composable
-fun UsersItem(item: Item) {
-    println("UsersItem item name: ${item.display_name} and id: $")
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 12.dp, bottom = 6.dp, end = 15.dp, start = 15.dp),
-        elevation = 10.dp,
-        shape = RoundedCornerShape(10.dp)
-    ) {
-        Row(
-            modifier = Modifier.padding(10.dp)
+fun UsersItem(item: Item, selected : Boolean = false, clickAction: () -> Unit) {
+    val coroutineScope = rememberCoroutineScope()
+    var mySelected by remember { mutableStateOf(selected) }
+    var job: Job? = null
+    var progress by remember {
+        mutableStateOf(0f)
+    }
+    val context = LocalContext.current
+    val motionScene = remember {
+        context.resources.openRawResource(R.raw.motion_scene).readBytes().decodeToString()
+    }
+
+    fun selectedItemAnimation() {
+        job = coroutineScope.launch(Dispatchers.Main.immediate) {
+            if (progress > 0.0f) {
+                while (progress > 0.0f) {
+                    progress -= 0.1f
+                    delay(40)
+                }
+                if (progress < 0.1f) {
+                    mySelected = false
+                }
+            } else {
+                while (progress < 1.0f) {
+                    progress += 0.1f
+                    mySelected = true
+                    delay(40)
+                }
+            }
+        }
+    }
+
+    if (mySelected) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 12.dp, bottom = 6.dp, end = 15.dp, start = 15.dp)
+                .clickable {
+                    selectedItemAnimation()
+                },
+            elevation = 10.dp,
+            shape = RoundedCornerShape(10.dp)
         ) {
-            Image(
-                modifier = Modifier
-                    .size(80.dp)
-                    .clip(RoundedCornerShape(5.dp)),
-                painter = rememberAsyncImagePainter(model = item.profile_image),
-                contentDescription = null
-            )
-            Spacer(modifier = Modifier.padding(5.dp))
-            Column {
-                Text(text = item.display_name.orEmpty(), color = StackoverflowBlue)
-                Text(text = item.location.orEmpty())
-                Text(text = item.reputation.toString().orEmpty())
+            MotionLayout(
+                motionScene = MotionScene(content = motionScene),
+                progress = progress,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.DarkGray)
+                        .layoutId("box")
+                )
+                Image(
+                    painter = rememberAsyncImagePainter(model = item.profile_image),
+                    contentDescription = null,
+                    modifier = Modifier.layoutId("profile_pic")
+                )
+                Text(
+                    text = item.display_name.orEmpty(),
+                    fontSize = 24.sp,
+                    modifier = Modifier.layoutId("username"),
+                    color = StackoverflowBlue
+                )
+            }
+        }
+    } else {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 12.dp, bottom = 6.dp, end = 15.dp, start = 15.dp)
+                .clickable {
+                    clickAction()
+                    selectedItemAnimation()
+                },
+            elevation = 10.dp,
+            shape = RoundedCornerShape(10.dp)
+        ) {
+            Row(
+                modifier = Modifier.padding(10.dp)
+            ) {
+                Image(
+                    modifier = Modifier
+                        .size(80.dp)
+                        .clip(RoundedCornerShape(5.dp)),
+                    painter = rememberAsyncImagePainter(model = item.profile_image),
+                    contentDescription = null
+                )
+                Spacer(modifier = Modifier.padding(5.dp))
+                Column {
+                    Text(text = item.display_name.orEmpty(), color = StackoverflowBlue)
+                    Text(text = item.location.orEmpty())
+                    Text(text = item.reputation.toString().orEmpty())
+                }
             }
         }
     }

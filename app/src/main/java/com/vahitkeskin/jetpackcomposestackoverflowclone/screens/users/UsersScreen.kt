@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -39,6 +40,7 @@ import kotlinx.coroutines.launch
 fun UsersScreen(
     usersViewModel: UsersViewModel = hiltViewModel(),
 ) {
+    var selectedIndex by remember { mutableStateOf(-1) }
     var state by remember { mutableStateOf(true) }
     val homeModelState = remember { mutableStateListOf<Item>() }
     var searchState by remember { mutableStateOf("") }
@@ -176,8 +178,12 @@ fun UsersScreen(
         */
         if (homeModelState.size > 0) {
             LazyColumn {
-                items(homeModelState) { item ->
-                    UsersItem(item)
+                itemsIndexed(homeModelState) { index, item ->
+                    UsersItem(
+                        item = item,
+                        selected = selectedIndex == index,
+                        clickAction = { selectedIndex = index }
+                    )
                 }
             }
         }
