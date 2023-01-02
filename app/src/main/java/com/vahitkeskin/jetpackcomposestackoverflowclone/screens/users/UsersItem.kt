@@ -1,5 +1,6 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.screens.users
 
+import android.text.Html
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,7 +23,9 @@ import coil.compose.rememberAsyncImagePainter
 import com.vahitkeskin.jetpackcomposestackoverflowclone.R
 import com.vahitkeskin.jetpackcomposestackoverflowclone.model.usersmodel.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowBlue
+import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.prettyCount
 import kotlinx.coroutines.*
+import java.util.Locale
 
 /**
  * @authot: Vahit Keskin
@@ -34,6 +37,7 @@ import kotlinx.coroutines.*
 fun UsersItem(item: Item, selected : Boolean = false, clickAction: () -> Unit) {
     val coroutineScope = rememberCoroutineScope()
     var mySelected by remember { mutableStateOf(selected) }
+    println("1. mySelected mySelected mySelected: $mySelected")
     var job: Job? = null
     var progress by remember {
         mutableStateOf(0f)
@@ -79,23 +83,25 @@ fun UsersItem(item: Item, selected : Boolean = false, clickAction: () -> Unit) {
                 progress = progress,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(Color.DarkGray)
-                        .layoutId("box")
-                )
                 Image(
                     painter = rememberAsyncImagePainter(model = item.profile_image),
                     contentDescription = null,
                     modifier = Modifier.layoutId("profile_pic")
                 )
-                Text(
-                    text = item.display_name.orEmpty(),
-                    fontSize = 24.sp,
-                    modifier = Modifier.layoutId("username"),
-                    color = StackoverflowBlue
-                )
+                Column(
+                    modifier = Modifier.layoutId("username")
+                ) {
+                    Text(
+                        text = item.display_name.orEmpty(),
+                        fontSize = 24.sp,
+                        color = StackoverflowBlue
+                    )
+                    Text(
+                        text = Html.fromHtml(item.about_me.orEmpty()).toString(),
+                        fontSize = 16.sp,
+                        color = StackoverflowBlue
+                    )
+                }
             }
         }
     } else {
@@ -122,9 +128,9 @@ fun UsersItem(item: Item, selected : Boolean = false, clickAction: () -> Unit) {
                 )
                 Spacer(modifier = Modifier.padding(5.dp))
                 Column {
-                    Text(text = item.display_name.orEmpty(), color = StackoverflowBlue)
+                    Text(text =  item.display_name.orEmpty(), color = StackoverflowBlue)
                     Text(text = item.location.orEmpty())
-                    Text(text = item.reputation.toString().orEmpty())
+                    Text(text = prettyCount(item.reputation).orEmpty())
                 }
             }
         }

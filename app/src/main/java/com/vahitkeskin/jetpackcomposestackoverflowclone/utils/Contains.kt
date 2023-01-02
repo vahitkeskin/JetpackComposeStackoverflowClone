@@ -11,6 +11,7 @@ object Contains {
     const val PACKAGE_NAME = "com.vahitkeskin.jetpackcomposestackoverflowclone"
     const val UTF_8 = "UTF-8"
     const val FILTER_BY_USER = "Filter by user"
+    const val DEFAULT_MINIMUM_TEXT_LINE = 2
 
     //SCREENS
     const val HOME_SCREEN = "home"
@@ -28,5 +29,8 @@ object Contains {
     const val ORDER = "order"
     const val DESC = "desc"
     const val FILTER = "filter"
-    const val BODY = "!6Wfm_gSyj6iTS"
+    const val ABOUT_ME = "!nOedRL_Y1f"
+    const val BODY_HOME = "!6Wfm_gSyj6iTS"
+    const val BODY_QUESTION = "!nOedRLbBQj"
+    const val INTITLE = "intitle"
 }

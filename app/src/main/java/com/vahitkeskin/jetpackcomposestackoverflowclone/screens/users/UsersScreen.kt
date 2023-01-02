@@ -48,8 +48,8 @@ fun UsersScreen(
     var job: Job? = null
 
     fun searchQuery(searchQuery: String ?= null) {
+        homeModelState.clear()
         coroutineScope.launch {
-            homeModelState.clear()
             usersViewModel.home(searchQuery.orEmpty()).items.forEach { item ->
                 homeModelState.add(item)
             }
@@ -67,11 +67,16 @@ fun UsersScreen(
                 .padding(top = 12.dp, bottom = 6.dp, end = 15.dp, start = 15.dp),
             value = searchState,
             onValueChange = { newText ->
-                searchState = newText
-                job?.cancel()
-                job = coroutineScope.launch {
-                    delay(1000)
-                    searchQuery(searchState)
+                println("2. mySelected mySelected mySelected: $newText, ${newText.length}")
+                if (newText.isEmpty()) {
+                    searchQuery()
+                } else {
+                    searchState = newText
+                    job?.cancel()
+                    job = coroutineScope.launch {
+                        delay(1000)
+                        searchQuery(searchState)
+                    }
                 }
             },
             label = {
@@ -117,6 +122,7 @@ fun UsersScreen(
                     Icon(
                         modifier = Modifier.clickable {
                             searchState = ""
+                            searchQuery()
                         },
                         painter = painterResource(id = R.drawable.ic_baseline_cancel_24),
                         contentDescription = null,
@@ -125,57 +131,6 @@ fun UsersScreen(
                 }
             }
         )
-        //
-        /*
-        BasicTextField(
-            modifier = Modifier
-                .padding(top = 12.dp, bottom = 6.dp, end = 15.dp, start = 15.dp)
-                .border(1.dp, StackoverflowPointUnSelect, RoundedCornerShape(5.dp)),
-            value = searchState,
-            textStyle = MaterialTheme.typography.body1.copy(color = Color.LightGray),
-            onValueChange = {
-                searchState = it
-                coroutineScope.launch {
-                    delay(1000)
-                    state = true
-                }
-            },
-            decorationBox = { innerTextField ->
-                Row(
-                    Modifier
-                        .background(StackoverflowCodeBg, RoundedCornerShape(percent = 30))
-                        .padding(14.dp)
-                        .fillMaxWidth()
-                ) {
-                    if (homeModelState.size > 0) {
-                        Icon(
-                            modifier = Modifier.padding(end = 10.dp),
-                            painter = painterResource(id = R.drawable.ic_search_questions_white),
-                            contentDescription = null,
-                            tint = StackoverflowPointUnSelect
-                        )
-                    } else {
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(20.dp).padding(end = 10.dp),
-                            strokeWidth = 1.dp,
-                            color = StackoverflowPointSelect
-                        )
-                    }
-                    if (searchState.text.isEmpty()) {
-                        Text(
-                            "Filter by user",
-                            color = StackoverflowPointUnSelect,
-                            modifier = Modifier
-                                .weight(1f)
-                                .fillMaxWidth()
-                                .background(Color.Red)
-                        )
-                    }
-                    innerTextField()
-                }
-            }
-        )
-        */
         if (homeModelState.size > 0) {
             LazyColumn {
                 itemsIndexed(homeModelState) { index, item ->

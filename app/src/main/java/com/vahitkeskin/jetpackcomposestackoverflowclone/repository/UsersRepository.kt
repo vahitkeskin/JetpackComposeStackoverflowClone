@@ -21,6 +21,7 @@ class UsersRepository @Inject constructor(
         }
         hashMap[Contains.SORT] = Contains.REPUTATION
         hashMap[Contains.ORDER] = Contains.DESC
+        hashMap[Contains.FILTER] = Contains.ABOUT_ME
         return service.getUsers(hashMap)
     }
 }

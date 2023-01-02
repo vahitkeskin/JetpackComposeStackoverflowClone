@@ -1,6 +1,7 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.api
 
 import com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel.HomeModel
+import com.vahitkeskin.jetpackcomposestackoverflowclone.model.questionsmodel.QuestionsModel
 import com.vahitkeskin.jetpackcomposestackoverflowclone.model.usersmodel.UsersModel
 import retrofit2.http.GET
 import retrofit2.http.QueryMap
@@ -18,10 +19,8 @@ interface Service {
     suspend fun getUsers(@QueryMap usersMap: HashMap<String, String>): UsersModel
 
     //Questions
-    //https://api.stackexchange.com/2.3/search/advanced?order=desc&sort=activity&q=Endpoint%20to%20access%20post%20detail%20on%20api.stackexchange%20site%20for%20Android&site=stackoverflow&filter=!nOedRLbBQj
-
-    //https://johncodeos.com/how-to-make-post-get-put-and-delete-requests-with-retrofit-using-kotlin/
-
-    //Tags: user_id -> 2887218 and https://api.stackexchange.com/2.3/users/2887218/tags?order=desc&sort=popular&site=stackoverflow
+    //https://api.stackexchange.com/2.3/search?order=desc&sort=activity&intitle=Representing%20a%20language-specific%20color%20code%20piece%20of%20code%20written%20in%20Jetpack%20Compose&site=stackoverflow&filter=!nOedRLbBQj
+    @GET("/2.3/search")
+    suspend fun getQuestions(@QueryMap questionsMap: HashMap<String, String>): QuestionsModel
 
 }

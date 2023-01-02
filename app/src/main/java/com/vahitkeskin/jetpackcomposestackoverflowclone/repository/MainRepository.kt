@@ -14,7 +14,7 @@ class MainRepository @Inject constructor(
 ) {
     suspend operator fun invoke(): HomeModel {
         val hashMap: HashMap<String, String> = hashMapOf()
-        hashMap[Contains.FILTER] = Contains.BODY
+        hashMap[Contains.FILTER] = Contains.BODY_HOME
         hashMap[Contains.SITE] = Contains.STACKOVERFLOW
         hashMap[Contains.SORT] = Contains.ACTIVITY
         hashMap[Contains.ORDER] = Contains.DESC

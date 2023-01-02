@@ -2,17 +2,17 @@
   ConstraintSets: {
     start: {
       profile_pic: {
-        width: 40,
-        height: 40,
+        width: 80,
+        height: 80,
         start: [
           'parent',
           'start',
-          16
+          12
         ],
         top: [
           'parent',
           'top',
-          16
+          12
         ],
         custom: {
           background: '#08ff04'
@@ -21,7 +21,8 @@
       username: {
         top: [
           'profile_pic',
-          'top'
+          'top',
+          12
         ],
         bottom: [
           'profile_pic',
@@ -30,7 +31,7 @@
         start: [
           'profile_pic',
           'end',
-          16
+          15
         ]
       },
       box: {

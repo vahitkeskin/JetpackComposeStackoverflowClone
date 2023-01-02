@@ -13,6 +13,7 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.questions.Questi
 import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.users.UsersScreen
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Utility.toJson
 import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.HomeViewModel
+import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.QuestionsViewModel
 import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.UsersViewModel
 import com.vahitkeskin.jetpackcomposestackoverflowclone.views.NavigationItem
 
@@ -28,6 +29,7 @@ fun StackoverflowComposable(
 ) {
     val homeViewModel: HomeViewModel = hiltViewModel()
     val usersViewModel: UsersViewModel = hiltViewModel()
+    val questionsViewModel: QuestionsViewModel = hiltViewModel()
     NavHost(
         navController = navController,
         startDestination = NavigationItem.Home.route
@@ -46,7 +48,7 @@ fun StackoverflowComposable(
         composable(
             route = NavigationItem.Questions.route,
             content = {
-                QuestionsScreen()
+                QuestionsScreen(questionsViewModel = questionsViewModel)
             }
         )
         composable(

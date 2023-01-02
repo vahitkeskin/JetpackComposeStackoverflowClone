@@ -11,6 +11,7 @@ data class Item(
     val last_access_date: Int,
     val last_modified_date: Int,
     val link: String,
+    val about_me: String,
     val location: String,
     val profile_image: String,
     val reputation: Int,
