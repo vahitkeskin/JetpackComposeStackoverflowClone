@@ -1,34 +1,22 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.component
 
-import android.os.Build.VERSION.SDK_INT
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
-import coil.ImageLoader
-import coil.compose.rememberAsyncImagePainter
-import coil.decode.GifDecoder
-import coil.decode.ImageDecoderDecoder
-import coil.request.ImageRequest
-import coil.size.Size
 import com.vahitkeskin.jetpackcomposestackoverflowclone.R
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowOrange
 import com.vahitkeskin.jetpackcomposestackoverflowclone.views.NavigationItem
@@ -64,30 +52,7 @@ fun StackoverflowBottomBar(
                         icon = {
                             item.icon?.let { icon ->
                                 if (clickUserIcon && item.route == NavigationItem.Users.route) {
-                                    val imageLoader = ImageLoader.Builder(context)
-                                        .components {
-                                            if (SDK_INT >= 28) {
-                                                add(ImageDecoderDecoder.Factory())
-                                            } else {
-                                                add(GifDecoder.Factory())
-                                            }
-                                        }
-                                        .build()
-                                    Image(
-                                        contentScale = ContentScale.Crop,
-                                        modifier = Modifier
-                                            .size(25.dp)
-                                            .clip(CircleShape)
-                                            .border(1.dp, Color.Transparent, CircleShape),
-                                        painter = rememberAsyncImagePainter(
-                                            ImageRequest.Builder(context)
-                                                .data(data = R.drawable.user_search_gif1)
-                                                .apply(block = {
-                                                    size(Size.ORIGINAL)
-                                                }).build(), imageLoader = imageLoader
-                                        ),
-                                        contentDescription = null
-                                    )
+                                    StackoverflowGifIcon(context = context, icon = R.drawable.user_search_gif1)
                                 } else {
                                     Icon(
                                         modifier = Modifier.padding(
