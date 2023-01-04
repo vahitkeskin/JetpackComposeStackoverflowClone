@@ -1,6 +1,5 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.component
 
-import android.content.Context
 import android.os.Build
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -12,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.ImageLoader
 import coil.compose.rememberAsyncImagePainter
@@ -26,9 +26,9 @@ import coil.size.Size
  */
 @Composable
 fun StackoverflowGifIcon(
-    context: Context,
     @DrawableRes icon: Int
 ) {
+    val context = LocalContext.current
     val imageLoader = ImageLoader.Builder(context)
         .components {
             if (Build.VERSION.SDK_INT >= 28) {

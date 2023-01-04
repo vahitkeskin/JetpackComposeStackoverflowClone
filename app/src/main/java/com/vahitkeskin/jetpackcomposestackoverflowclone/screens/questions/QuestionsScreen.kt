@@ -16,6 +16,8 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
@@ -39,6 +41,7 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowPo
 import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.QuestionsViewModel
 import eu.wewox.textflow.TextFlow
 import eu.wewox.textflow.TextFlowObstacleAlignment
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /**
@@ -208,7 +211,13 @@ private fun SimpleItemCard(item: Item) {
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-private fun SearchBar(modifier: Modifier = Modifier, maxChar: Int ?= 0, isUpOrDown: Boolean ?= true) {
+private fun SearchBar(
+    modifier: Modifier = Modifier,
+    maxChar: Int? = 0,
+    isUpOrDown: Boolean? = true
+) {
+    var searchState by remember { mutableStateOf(true) }
+    val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
     Row(
         modifier = modifier,
@@ -243,19 +252,36 @@ private fun SearchBar(modifier: Modifier = Modifier, maxChar: Int ?= 0, isUpOrDo
                     },
                     colors = TextFieldDefaults.textFieldColors(
                         backgroundColor = Color.DarkGray,
-                        focusedIndicatorColor =  Color.Transparent,
-                        unfocusedIndicatorColor = Color.LightGray),
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.LightGray
+                    ),
                     maxLines = 1,
                     singleLine = true
                 )
                 if (text.isNotEmpty()) {
                     FloatingActionButton(
                         onClick = {
-                            Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+                            //Remove leading and trailing whitespace from a string in Kotlin
+                            text = text.trim()
+                            searchState = false
                         },
                         backgroundColor = Color.DarkGray
                     ) {
-                        StackoverflowGifIcon(context = context, icon = R.drawable.ic_question_search_bar_icon_gif)
+                        if (searchState) {
+                            Icon(
+                                imageVector = Icons.Default.Search,
+                                contentDescription = null,
+                                tint = Color.LightGray
+                            )
+                        } else {
+                            StackoverflowGifIcon(icon = R.drawable.ic_question_search_bar_icon_gif)
+                            coroutineScope.launch {
+                                delay(3000)
+                                Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+                                searchState = true
+                            }
+                        }
+
                     }
                 }
             }
@@ -286,7 +312,9 @@ private fun SearchBar(modifier: Modifier = Modifier, maxChar: Int ?= 0, isUpOrDo
                     }
                 ) { targetCount ->
                     Text(
-                        text = if ((targetCount ?: 0)< 10) "0$targetCount" else targetCount.toString(),
+                        text = if ((targetCount
+                                ?: 0) < 10
+                        ) "0$targetCount" else targetCount.toString(),
                         textAlign = TextAlign.End,
                         color = Color.LightGray,
                         style = MaterialTheme.typography.caption,
@@ -299,7 +327,10 @@ private fun SearchBar(modifier: Modifier = Modifier, maxChar: Int ?= 0, isUpOrDo
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-private fun SideMenuOptions(modifier: Modifier = Modifier, selectSearchItemSizeState: (Int, Boolean) -> Unit) {
+private fun SideMenuOptions(
+    modifier: Modifier = Modifier,
+    selectSearchItemSizeState: (Int, Boolean) -> Unit
+) {
     var stateNumber by remember { mutableStateOf(100) }
     var isUpOrDown by remember { mutableStateOf(true) }
     Column(modifier, verticalArrangement = Arrangement.spacedBy(10.dp)) {

@@ -52,7 +52,7 @@ fun StackoverflowBottomBar(
                         icon = {
                             item.icon?.let { icon ->
                                 if (clickUserIcon && item.route == NavigationItem.Users.route) {
-                                    StackoverflowGifIcon(context = context, icon = R.drawable.user_search_gif1)
+                                    StackoverflowGifIcon(icon = R.drawable.user_search_gif1)
                                 } else {
                                     Icon(
                                         modifier = Modifier.padding(
