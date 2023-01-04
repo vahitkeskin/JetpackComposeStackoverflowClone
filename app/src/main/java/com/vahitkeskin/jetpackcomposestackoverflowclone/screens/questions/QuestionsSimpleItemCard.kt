@@ -33,7 +33,11 @@ fun QuestionsSimpleItemCard(item: Item) {
     Card(
         Modifier
             .fillMaxWidth()
-            .padding(15.dp)
+            .padding(
+                bottom = 15.dp,
+                start = 15.dp,
+                end = 15.dp
+            )
     ) {
         Row(
             modifier = Modifier.padding(10.dp),

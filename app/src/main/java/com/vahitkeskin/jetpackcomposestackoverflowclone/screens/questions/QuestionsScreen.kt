@@ -124,11 +124,7 @@ fun QuestionsScreen(
                                 .simpleVerticalScrollbar(stateScrollBar)
                         ) {
                             Row(
-                                modifier = Modifier.padding(
-                                    top = 15.dp,
-                                    start = 15.dp,
-                                    end = 15.dp
-                                )
+                                modifier = Modifier.padding(15.dp)
                             ) {
                                 Text(
                                     buildAnnotatedString {
