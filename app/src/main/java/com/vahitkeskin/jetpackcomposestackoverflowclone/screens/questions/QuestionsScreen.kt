@@ -3,21 +3,29 @@ package com.vahitkeskin.jetpackcomposestackoverflowclone.screens.questions
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Scaffold
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.vahitkeskin.jetpackcomposestackoverflowclone.R
+import com.vahitkeskin.jetpackcomposestackoverflowclone.component.StackoverflowLazyColumnScrollbar
+import com.vahitkeskin.jetpackcomposestackoverflowclone.component.StackoverflowScrollbarSelectableMode
 import com.vahitkeskin.jetpackcomposestackoverflowclone.component.StackoverflowGifIcon
 import com.vahitkeskin.jetpackcomposestackoverflowclone.model.questionsmodel.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.JetpackComposeStackoverflowCloneTheme
+import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowPurple
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains
+import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.simpleVerticalScrollbar
 import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.QuestionsViewModel
 import kotlinx.coroutines.launch
 
@@ -30,12 +38,15 @@ import kotlinx.coroutines.launch
 fun QuestionsScreen(
     questionsViewModel: QuestionsViewModel = hiltViewModel(),
 ) {
+    val context = LocalContext.current
     var maxCharState by remember { mutableStateOf(100) }
     var isSelectItemSizeState by remember { mutableStateOf(true) }
     val coroutineScope = rememberCoroutineScope()
     var state by remember { mutableStateOf(true) }
     val questionModelState = remember { mutableStateListOf<Item>() }
     var searchState by remember { mutableStateOf("Android Jetpack Compose") }
+    var newSearhState by remember { mutableStateOf(false) }
+    val listState = rememberLazyListState()
     if (state) {
         coroutineScope.launch {
             questionsViewModel.home(searchState)
@@ -56,7 +67,7 @@ fun QuestionsScreen(
             )
         }
     ) {
-        Box(Modifier.background(Color(0xFF25073B))) {
+        Box(Modifier.background(StackoverflowPurple)) {
             if (isMenuOpened) {
                 QuestionsSideMenuOptions(
                     Modifier
@@ -78,29 +89,51 @@ fun QuestionsScreen(
                         questionModelState.clear()
                         searchState = it
                         state = true
+                        newSearhState = true //A new search was made in the search bar and clicked on fab
                     }
                 )
             }
             val contentOffset = animateDpAsState(if (isMenuOpened) (-100).dp else 0.dp)
             val corner = animateDpAsState(if (isMenuOpened) 24.dp else 0.dp)
+            val stateScrollBar by remember { mutableStateOf(LazyListState()) }
             Column {
                 if (questionModelState.size > 0) {
-                    QuestionsMainContent(
-                        questionModelState = questionModelState,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .offset(contentOffset.value, contentOffset.value)
-                            .clip(RoundedCornerShape(corner.value))
-                    )
-                } else {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
+                    StackoverflowLazyColumnScrollbar(
+                        listState,
+                        selectionMode = StackoverflowScrollbarSelectableMode.Thumb,
+                        indicatorContent = { index, isThumbSelected ->
+                            QuestionsIndicatorContent(
+                                isThumbSelected = isThumbSelected,
+                                item = questionModelState[index]
+                            )
+                        }
                     ) {
-                        StackoverflowGifIcon(
-                            icon = R.drawable.no_search_results_found_gif,
-                            previewPage = Contains.QUESTION_SCREEN_ITEM_SIZE
-                        )
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .offset(contentOffset.value, contentOffset.value)
+                                .clip(RoundedCornerShape(corner.value))
+                                .background(MaterialTheme.colors.background)
+                                .simpleVerticalScrollbar(stateScrollBar)
+                        ) {
+                            LazyColumn(state = listState) {
+                                items(questionModelState) { item ->
+                                    QuestionsSimpleItemCard(item)
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    if (newSearhState) {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            StackoverflowGifIcon(
+                                icon = R.drawable.no_search_results_found_gif,
+                                previewPage = Contains.QUESTION_SCREEN_ITEM_SIZE
+                            )
+                        }
                     }
                 }
             }

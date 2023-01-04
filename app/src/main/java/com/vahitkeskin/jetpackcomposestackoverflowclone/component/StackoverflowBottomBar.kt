@@ -32,7 +32,6 @@ fun StackoverflowBottomBar(
     navController: NavController,
     bottomBarState: MutableState<Boolean>
 ) {
-    val context = LocalContext.current
     var clickUserIcon by remember { mutableStateOf(true) }
     val items = listOf(
         NavigationItem.Home,

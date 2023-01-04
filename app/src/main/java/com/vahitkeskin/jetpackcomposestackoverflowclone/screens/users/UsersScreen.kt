@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.vahitkeskin.jetpackcomposestackoverflowclone.R
+import com.vahitkeskin.jetpackcomposestackoverflowclone.component.StackoverflowGifIcon
 import com.vahitkeskin.jetpackcomposestackoverflowclone.model.usersmodel.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowPointSelect
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowPointUnSelect
@@ -46,6 +47,7 @@ fun UsersScreen(
     var searchState by remember { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
     var job: Job? = null
+    var newSearhState by remember { mutableStateOf(false) }
 
     fun searchQuery(searchQuery: String ?= null) {
         homeModelState.clear()
@@ -68,6 +70,7 @@ fun UsersScreen(
             value = searchState,
             onValueChange = { newText ->
                 println("2. mySelected mySelected mySelected: $newText, ${newText.length}")
+                newSearhState = true
                 if (newText.isEmpty()) {
                     searchQuery()
                 } else {
@@ -107,13 +110,15 @@ fun UsersScreen(
                             tint = Color.LightGray
                         )
                     } else {
-                        CircularProgressIndicator(
-                            modifier = Modifier
-                                .size(40.dp)
-                                .padding(10.dp),
-                            strokeWidth = 2.dp,
-                            color = StackoverflowPointUnSelect
-                        )
+                        if (!newSearhState) {
+                            CircularProgressIndicator(
+                                modifier = Modifier
+                                    .size(40.dp)
+                                    .padding(10.dp),
+                                strokeWidth = 2.dp,
+                                color = StackoverflowPointUnSelect
+                            )
+                        }
                     }
                 }
             },
@@ -138,6 +143,18 @@ fun UsersScreen(
                         item = item,
                         selected = selectedIndex == index,
                         clickAction = { selectedIndex = index }
+                    )
+                }
+            }
+        } else {
+            if (newSearhState) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    StackoverflowGifIcon(
+                        icon = R.drawable.no_search_results_found_gif,
+                        previewPage = Contains.QUESTION_SCREEN_ITEM_SIZE
                     )
                 }
             }
