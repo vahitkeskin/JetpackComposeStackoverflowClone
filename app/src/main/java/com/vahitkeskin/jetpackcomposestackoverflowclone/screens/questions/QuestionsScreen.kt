@@ -8,19 +8,26 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.vahitkeskin.jetpackcomposestackoverflowclone.R
+import com.vahitkeskin.jetpackcomposestackoverflowclone.component.StackoverflowGifIcon
 import com.vahitkeskin.jetpackcomposestackoverflowclone.component.StackoverflowLazyColumnScrollbar
 import com.vahitkeskin.jetpackcomposestackoverflowclone.component.StackoverflowScrollbarSelectableMode
-import com.vahitkeskin.jetpackcomposestackoverflowclone.component.StackoverflowGifIcon
 import com.vahitkeskin.jetpackcomposestackoverflowclone.model.questionsmodel.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.JetpackComposeStackoverflowCloneTheme
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowPurple
@@ -38,7 +45,6 @@ import kotlinx.coroutines.launch
 fun QuestionsScreen(
     questionsViewModel: QuestionsViewModel = hiltViewModel(),
 ) {
-    val context = LocalContext.current
     var maxCharState by remember { mutableStateOf(100) }
     var isSelectItemSizeState by remember { mutableStateOf(true) }
     val coroutineScope = rememberCoroutineScope()
@@ -49,10 +55,9 @@ fun QuestionsScreen(
     val listState = rememberLazyListState()
     if (state) {
         coroutineScope.launch {
-            questionsViewModel.home(searchState)
-                .items.forEach {
-                    questionModelState.add(it)
-                }
+            questionsViewModel.home(searchState).items.forEach {
+                questionModelState.add(it)
+            }
         }
         state = false
     }
@@ -102,13 +107,15 @@ fun QuestionsScreen(
                         listState,
                         selectionMode = StackoverflowScrollbarSelectableMode.Thumb,
                         indicatorContent = { index, isThumbSelected ->
-                            QuestionsIndicatorContent(
-                                isThumbSelected = isThumbSelected,
-                                item = questionModelState[index]
-                            )
+                            if (questionModelState.size > 0) {
+                                QuestionsIndicatorContent(
+                                    isThumbSelected = isThumbSelected,
+                                    item = questionModelState[index]
+                                )
+                            }
                         }
                     ) {
-                        Box(
+                        Column(
                             modifier = Modifier
                                 .fillMaxSize()
                                 .offset(contentOffset.value, contentOffset.value)
@@ -116,6 +123,34 @@ fun QuestionsScreen(
                                 .background(MaterialTheme.colors.background)
                                 .simpleVerticalScrollbar(stateScrollBar)
                         ) {
+                            Row(
+                                modifier = Modifier.padding(
+                                    top = 15.dp,
+                                    start = 15.dp,
+                                    end = 15.dp
+                                )
+                            ) {
+                                Text(
+                                    buildAnnotatedString {
+                                        withStyle(style = SpanStyle(fontSize = 12.sp)) {
+                                            withStyle(style = SpanStyle(color = Color.Gray)) {
+                                                append("${questionModelState.size} results found for \"")
+                                            }
+                                            withStyle(
+                                                style = SpanStyle(
+                                                    fontWeight = FontWeight.Bold,
+                                                    color = Color.LightGray
+                                                )
+                                            ) {
+                                                append(searchState)
+                                            }
+                                            withStyle(style = SpanStyle(color = Color.Gray)) {
+                                                append("\".")
+                                            }
+                                        }
+                                    }
+                                )
+                            }
                             LazyColumn(state = listState) {
                                 items(questionModelState) { item ->
                                     QuestionsSimpleItemCard(item)
