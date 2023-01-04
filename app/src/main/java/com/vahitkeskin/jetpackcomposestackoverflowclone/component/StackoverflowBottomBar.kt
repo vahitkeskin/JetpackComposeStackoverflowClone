@@ -19,6 +19,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.vahitkeskin.jetpackcomposestackoverflowclone.R
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowOrange
+import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains
 import com.vahitkeskin.jetpackcomposestackoverflowclone.views.NavigationItem
 
 /**
@@ -52,7 +53,10 @@ fun StackoverflowBottomBar(
                         icon = {
                             item.icon?.let { icon ->
                                 if (clickUserIcon && item.route == NavigationItem.Users.route) {
-                                    StackoverflowGifIcon(icon = R.drawable.user_search_gif1)
+                                    StackoverflowGifIcon(
+                                        icon = R.drawable.user_search_gif1,
+                                        previewPage = Contains.BOTTOM_BAR_USERS_ICON
+                                    )
                                 } else {
                                     Icon(
                                         modifier = Modifier.padding(

@@ -19,6 +19,7 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
+import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains
 
 /**
  * @authot: Vahit Keskin
@@ -26,7 +27,8 @@ import coil.size.Size
  */
 @Composable
 fun StackoverflowGifIcon(
-    @DrawableRes icon: Int
+    @DrawableRes icon: Int,
+    previewPage: String ?= Contains.BOTTOM_BAR_USERS_ICON
 ) {
     val context = LocalContext.current
     val imageLoader = ImageLoader.Builder(context)
@@ -41,7 +43,7 @@ fun StackoverflowGifIcon(
     Image(
         contentScale = ContentScale.Crop,
         modifier = Modifier
-            .size(25.dp)
+            .size(if (previewPage == Contains.QUESTION_SCREEN_ITEM_SIZE) 300.dp else 25.dp)
             .clip(CircleShape)
             .border(1.dp, Color.Transparent, CircleShape),
         painter = rememberAsyncImagePainter(

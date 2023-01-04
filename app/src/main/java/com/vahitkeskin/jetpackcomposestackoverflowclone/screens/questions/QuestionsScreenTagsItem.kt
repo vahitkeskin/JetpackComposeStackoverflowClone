@@ -20,7 +20,7 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowTa
  */
 
 @Composable
-fun QuestionScreenTagsItem(tags: String) {
+fun QuestionsScreenTagsItem(tags: String) {
     Card(
         modifier = Modifier
             .clip(RoundedCornerShape(10))

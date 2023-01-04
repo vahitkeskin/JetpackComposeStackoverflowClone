@@ -33,4 +33,9 @@ object Contains {
     const val BODY_HOME = "!6Wfm_gSyj6iTS"
     const val BODY_QUESTION = "!nOedRLbBQj"
     const val INTITLE = "intitle"
+
+    //GIF SIZE PREVIEW_PAGES
+    const val QUESTION_SCREEN_FAB = "question_screen_fab"
+    const val QUESTION_SCREEN_ITEM_SIZE = "question_screen_item_size"
+    const val BOTTOM_BAR_USERS_ICON = "bottom_bar_users_icon"
 }
