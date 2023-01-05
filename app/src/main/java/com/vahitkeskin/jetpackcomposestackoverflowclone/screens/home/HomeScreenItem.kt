@@ -35,7 +35,6 @@ fun HomeScreenItem(
             .padding(top = 12.dp, bottom = 6.dp, end = 15.dp, start = 15.dp)
             .clickable {
                 navigateToDetail.invoke(item)
-                //navController.navigate(route = NavigationItem.HomeDetail.route.plus("/${item.body.encode()}"))
             },
         elevation = 10.dp,
         shape = RoundedCornerShape(10.dp)

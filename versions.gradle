@@ -4,5 +4,5 @@ ext {
     hilt_version = '2.43.2'
     hilt_navigation_compose_version = '1.0.0'
     retrofitVersion = '2.9.0'
-
+    flipper_version = '0.176.1'
 }
