@@ -1,12 +1,9 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.screens.users
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -24,7 +21,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.vahitkeskin.jetpackcomposestackoverflowclone.R
 import com.vahitkeskin.jetpackcomposestackoverflowclone.component.StackoverflowGifIcon
 import com.vahitkeskin.jetpackcomposestackoverflowclone.model.usersmodel.Item
-import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowPointSelect
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowPointUnSelect
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains
 import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.UsersViewModel

@@ -2,7 +2,6 @@ package com.vahitkeskin.jetpackcomposestackoverflowclone.screens.users
 
 import android.text.Html
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,7 +10,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -25,7 +23,6 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.model.usersmodel.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowBlue
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.prettyCount
 import kotlinx.coroutines.*
-import java.util.Locale
 
 /**
  * @authot: Vahit Keskin
