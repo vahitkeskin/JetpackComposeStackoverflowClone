@@ -48,7 +48,12 @@ fun StackoverflowComposable(
         composable(
             route = NavigationItem.Questions.route,
             content = {
-                QuestionsScreen(questionsViewModel = questionsViewModel)
+                QuestionsScreen(
+                    questionsViewModel = questionsViewModel,
+                    navigateToDetail = {
+                        navController.navigate(NavigationItem.HomeDetail.route.plus("?homeDetail=${it.toJson()}"))
+                    }
+                )
             }
         )
         composable(

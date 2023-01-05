@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -28,12 +29,15 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.R
 import com.vahitkeskin.jetpackcomposestackoverflowclone.component.StackoverflowGifIcon
 import com.vahitkeskin.jetpackcomposestackoverflowclone.component.StackoverflowLazyColumnScrollbar
 import com.vahitkeskin.jetpackcomposestackoverflowclone.component.StackoverflowScrollbarSelectableMode
+import com.vahitkeskin.jetpackcomposestackoverflowclone.datastore.SharedDataStore
 import com.vahitkeskin.jetpackcomposestackoverflowclone.model.questionsmodel.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.JetpackComposeStackoverflowCloneTheme
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowPurple
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains
+import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Utility.toJson
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.simpleVerticalScrollbar
 import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.QuestionsViewModel
+import com.vahitkeskin.jetpackcomposestackoverflowclone.views.NavigationItem
 import kotlinx.coroutines.launch
 
 /**
@@ -44,7 +48,9 @@ import kotlinx.coroutines.launch
 @Composable
 fun QuestionsScreen(
     questionsViewModel: QuestionsViewModel = hiltViewModel(),
+    navigateToDetail: (Item) -> Unit
 ) {
+    val context = LocalContext.current
     var maxCharState by remember { mutableStateOf(100) }
     var isSelectItemSizeState by remember { mutableStateOf(true) }
     val coroutineScope = rememberCoroutineScope()
@@ -53,6 +59,7 @@ fun QuestionsScreen(
     var searchState by remember { mutableStateOf("Android Jetpack Compose") }
     var newSearhState by remember { mutableStateOf(false) }
     val listState = rememberLazyListState()
+    val dataStore = SharedDataStore(context)
     if (state) {
         coroutineScope.launch {
             questionsViewModel.home(searchState).items.forEach {
@@ -107,12 +114,16 @@ fun QuestionsScreen(
                         listState,
                         selectionMode = StackoverflowScrollbarSelectableMode.Thumb,
                         indicatorContent = { index, isThumbSelected ->
-                            if (questionModelState.size > 0) {
+                            println("Data store for item value: ${dataStore.getScrollbarDetail.collectAsState(initial = "").value}")
+                            if (questionModelState.size > 0 &&
+                                dataStore.getScrollbarDetail.collectAsState(initial = "").value == true
+                            ) {
                                 QuestionsIndicatorContent(
                                     isThumbSelected = isThumbSelected,
                                     item = questionModelState[index]
                                 )
                             }
+
                         }
                     ) {
                         Column(
@@ -149,7 +160,9 @@ fun QuestionsScreen(
                             }
                             LazyColumn(state = listState) {
                                 items(questionModelState) { item ->
-                                    QuestionsSimpleItemCard(item)
+                                    QuestionsSimpleItemCard(item) {
+                                        navigateToDetail.invoke(it)
+                                    }
                                 }
                             }
                         }
@@ -176,6 +189,6 @@ fun QuestionsScreen(
 @Composable
 fun QuestionsScreenPreview() {
     JetpackComposeStackoverflowCloneTheme() {
-        QuestionsScreen()
+        QuestionsScreen {}
     }
 }

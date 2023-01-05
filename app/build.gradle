@@ -104,4 +104,9 @@ dependencies {
     //Palette Circle
     implementation "com.github.skydoves:landscapist-glide:1.3.6"
 
+    //DataStore & SharedPreferences
+    implementation "androidx.datastore:datastore-preferences:$datastore_version"
+    implementation "androidx.datastore:datastore-preferences-rxjava2:$datastore_version"
+    implementation "androidx.datastore:datastore-preferences-rxjava3:$datastore_version"
+
 }

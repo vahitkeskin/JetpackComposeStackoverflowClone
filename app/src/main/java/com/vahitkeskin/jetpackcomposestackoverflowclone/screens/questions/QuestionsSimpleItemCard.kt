@@ -1,6 +1,7 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.screens.questions
 
 import android.text.Html
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -29,7 +30,10 @@ import eu.wewox.textflow.TextFlowObstacleAlignment
  */
 
 @Composable
-fun QuestionsSimpleItemCard(item: Item) {
+fun QuestionsSimpleItemCard(
+    item: Item,
+    navigateToDetail: (Item) -> Unit
+) {
     Card(
         Modifier
             .fillMaxWidth()
@@ -37,7 +41,9 @@ fun QuestionsSimpleItemCard(item: Item) {
                 bottom = 15.dp,
                 start = 15.dp,
                 end = 15.dp
-            )
+            ).clickable {
+                navigateToDetail.invoke(item)
+            }
     ) {
         Row(
             modifier = Modifier.padding(10.dp),
