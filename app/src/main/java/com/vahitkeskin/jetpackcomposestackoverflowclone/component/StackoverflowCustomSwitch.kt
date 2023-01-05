@@ -48,17 +48,17 @@ fun StackoverflowCustomSwitch(
     val interactionSource = remember {
         MutableInteractionSource()
     }
-    val value = dataStore.getScrollbarDetail.collectAsState(initial = "").value
     var switchOn by remember {
-        mutableStateOf(value)
+        mutableStateOf(true)
     }
-    val alignment by animateAlignmentAsState(if (switchOn == true) 1f else -1f)
+    switchOn = dataStore.getScrollbarDetail.collectAsState(initial = "").value == true
+    val alignment by animateAlignmentAsState(if (switchOn) 1f else -1f)
     Box(
         modifier = Modifier
             .size(width = width, height = height)
             .border(
                 width = borderWidth,
-                color = if (switchOn == true) checkedTrackColor else uncheckedTrackColor,
+                color = if (switchOn) checkedTrackColor else uncheckedTrackColor,
                 shape = RoundedCornerShape(percent = cornerSize)
             )
             .clickable(
@@ -67,7 +67,7 @@ fun StackoverflowCustomSwitch(
             ) {
                 coroutineScope.launch {
                     switchOn = switchOn != true
-                    if (switchOn == true) {
+                    if (switchOn) {
                         dataStore.saveScrollbarDetail(true)
                     } else {
                         dataStore.saveScrollbarDetail(false)
@@ -88,12 +88,12 @@ fun StackoverflowCustomSwitch(
             contentAlignment = alignment
         ) {
             Icon(
-                imageVector = if (switchOn == true) Icons.Filled.Done else Icons.Filled.Close,
-                contentDescription = if (switchOn == true) "Enabled" else "Disabled",
+                imageVector = if (switchOn) Icons.Filled.Done else Icons.Filled.Close,
+                contentDescription = if (switchOn) "Enabled" else "Disabled",
                 modifier = Modifier
                     .size(size = thumbSize)
                     .background(
-                        color = if (switchOn == true) checkedTrackColor else uncheckedTrackColor,
+                        color = if (switchOn) checkedTrackColor else uncheckedTrackColor,
                         shape = CircleShape
                     )
                     .padding(all = iconInnerPadding),
