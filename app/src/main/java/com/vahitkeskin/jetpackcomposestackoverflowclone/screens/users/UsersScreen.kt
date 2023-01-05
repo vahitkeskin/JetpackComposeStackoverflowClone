@@ -65,7 +65,6 @@ fun UsersScreen(
                 .padding(top = 12.dp, bottom = 6.dp, end = 15.dp, start = 15.dp),
             value = searchState,
             onValueChange = { newText ->
-                println("2. mySelected mySelected mySelected: $newText, ${newText.length}")
                 newSearhState = true
                 if (newText.isEmpty()) {
                     searchQuery()

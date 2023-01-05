@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">JetpackComposeStackoverflowClone</string>
+    <string name="text_zoom">If the user profile photo and name popup next to the ScrollBar bothers you, you can turn it on or off at any time from here.</string>
 </resources>

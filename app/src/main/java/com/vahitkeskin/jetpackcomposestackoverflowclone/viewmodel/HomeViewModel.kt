@@ -42,7 +42,6 @@ class HomeViewModel @Inject constructor(
     private fun home() {
         viewModelScope.launch {
             getHomeModelResponse()
-            println("2. Hello selected home model in items: ${mainRepository.invoke().items.size}")
             _homeModel.value = mainRepository.invoke()
         }
     }

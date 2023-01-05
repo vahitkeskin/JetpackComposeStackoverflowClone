@@ -34,7 +34,6 @@ import kotlinx.coroutines.*
 fun UsersItem(item: Item, selected : Boolean = false, clickAction: () -> Unit) {
     val coroutineScope = rememberCoroutineScope()
     var mySelected by remember { mutableStateOf(selected) }
-    println("1. mySelected mySelected mySelected: $mySelected")
     var job: Job? = null
     var progress by remember {
         mutableStateOf(0f)

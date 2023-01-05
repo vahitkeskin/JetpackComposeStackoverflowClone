@@ -14,6 +14,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -34,10 +35,8 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.model.questionsmodel.Ite
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.JetpackComposeStackoverflowCloneTheme
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowPurple
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains
-import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Utility.toJson
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.simpleVerticalScrollbar
 import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.QuestionsViewModel
-import com.vahitkeskin.jetpackcomposestackoverflowclone.views.NavigationItem
 import kotlinx.coroutines.launch
 
 /**
@@ -60,6 +59,7 @@ fun QuestionsScreen(
     var newSearhState by remember { mutableStateOf(false) }
     val listState = rememberLazyListState()
     val dataStore = SharedDataStore(context)
+    val switchButtonZoom = dataStore.getQuestionsScreenSwitchButtonZoom.collectAsState(initial = "")
     if (state) {
         coroutineScope.launch {
             questionsViewModel.home(searchState).items.forEach {
@@ -70,117 +70,122 @@ fun QuestionsScreen(
     }
 
     var isMenuOpened by mutableStateOf(false)
-    Scaffold(
-        topBar = { },
-        floatingActionButton = {
-            QuestionsFloatingAddButton(
-                isOpened = isMenuOpened,
-                onClick = { isMenuOpened = !isMenuOpened },
-            )
-        }
-    ) {
-        Box(Modifier.background(StackoverflowPurple)) {
-            if (isMenuOpened) {
-                QuestionsSideMenuOptions(
-                    Modifier
-                        .align(Alignment.BottomEnd)
-                        .offset(x = (-16).dp, y = (-100).dp),
-                    selectSearchItemSizeState = { mMaxCharState, mIsSelectItemSizeState ->
-                        maxCharState = mMaxCharState
-                        isSelectItemSizeState = mIsSelectItemSizeState
-                    }
-                )
-                QuestionsSearchBar(
-                    Modifier
-                        .align(Alignment.BottomStart)
-                        .fillMaxWidth()
-                        .padding(start = 16.dp, end = 100.dp, bottom = 16.dp),
-                    maxChar = maxCharState,
-                    isUpOrDown = isSelectItemSizeState,
-                    search = {
-                        questionModelState.clear()
-                        searchState = it
-                        state = true
-                        newSearhState = true //A new search was made in the search bar and clicked on fab
-                    }
+    Box {
+        Scaffold(
+            modifier = Modifier.alpha(if (switchButtonZoom.value == true) 0.1f else 1f),
+            topBar = { },
+            floatingActionButton = {
+                QuestionsFloatingAddButton(
+                    isOpened = isMenuOpened,
+                    onClick = { isMenuOpened = !isMenuOpened },
                 )
             }
-            val contentOffset = animateDpAsState(if (isMenuOpened) (-100).dp else 0.dp)
-            val corner = animateDpAsState(if (isMenuOpened) 24.dp else 0.dp)
-            val stateScrollBar by remember { mutableStateOf(LazyListState()) }
-            Column {
-                if (questionModelState.size > 0) {
-                    StackoverflowLazyColumnScrollbar(
-                        listState,
-                        selectionMode = StackoverflowScrollbarSelectableMode.Thumb,
-                        indicatorContent = { index, isThumbSelected ->
-                            println("Data store for item value: ${dataStore.getScrollbarDetail.collectAsState(initial = "").value}")
-                            if (questionModelState.size > 0 &&
-                                dataStore.getScrollbarDetail.collectAsState(initial = "").value == true
-                            ) {
-                                QuestionsIndicatorContent(
-                                    isThumbSelected = isThumbSelected,
-                                    item = questionModelState[index]
-                                )
-                            }
-
+        ) {
+            Box(Modifier.background(StackoverflowPurple)) {
+                if (isMenuOpened) {
+                    QuestionsSideMenuOptions(
+                        Modifier
+                            .align(Alignment.BottomEnd)
+                            .offset(x = (-16).dp, y = (-100).dp),
+                        selectSearchItemSizeState = { mMaxCharState, mIsSelectItemSizeState ->
+                            maxCharState = mMaxCharState
+                            isSelectItemSizeState = mIsSelectItemSizeState
                         }
-                    ) {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .offset(contentOffset.value, contentOffset.value)
-                                .clip(RoundedCornerShape(corner.value))
-                                .background(MaterialTheme.colors.background)
-                                .simpleVerticalScrollbar(stateScrollBar)
+                    )
+                    QuestionsSearchBar(
+                        Modifier
+                            .align(Alignment.BottomStart)
+                            .fillMaxWidth()
+                            .padding(start = 16.dp, end = 100.dp, bottom = 16.dp),
+                        maxChar = maxCharState,
+                        isUpOrDown = isSelectItemSizeState,
+                        search = {
+                            questionModelState.clear()
+                            searchState = it
+                            state = true
+                            newSearhState = true //A new search was made in the search bar and clicked on fab
+                        }
+                    )
+                }
+                val contentOffset = animateDpAsState(if (isMenuOpened) (-100).dp else 0.dp)
+                val corner = animateDpAsState(if (isMenuOpened) 24.dp else 0.dp)
+                val stateScrollBar by remember { mutableStateOf(LazyListState()) }
+                Column {
+                    if (questionModelState.size > 0) {
+                        StackoverflowLazyColumnScrollbar(
+                            listState,
+                            selectionMode = StackoverflowScrollbarSelectableMode.Thumb,
+                            indicatorContent = { index, isThumbSelected ->
+                                if (questionModelState.size > 0 &&
+                                    dataStore.getScrollbarDetail.collectAsState(initial = "").value == true
+                                ) {
+                                    QuestionsIndicatorContent(
+                                        isThumbSelected = isThumbSelected,
+                                        item = questionModelState[index]
+                                    )
+                                }
+
+                            }
                         ) {
-                            Row(
-                                modifier = Modifier.padding(15.dp)
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .offset(contentOffset.value, contentOffset.value)
+                                    .clip(RoundedCornerShape(corner.value))
+                                    .background(MaterialTheme.colors.background)
+                                    .simpleVerticalScrollbar(stateScrollBar)
                             ) {
-                                Text(
-                                    buildAnnotatedString {
-                                        withStyle(style = SpanStyle(fontSize = 12.sp)) {
-                                            withStyle(style = SpanStyle(color = Color.Gray)) {
-                                                append("${questionModelState.size} results found for \"")
-                                            }
-                                            withStyle(
-                                                style = SpanStyle(
-                                                    fontWeight = FontWeight.Bold,
-                                                    color = Color.LightGray
-                                                )
-                                            ) {
-                                                append(searchState)
-                                            }
-                                            withStyle(style = SpanStyle(color = Color.Gray)) {
-                                                append("\".")
+                                Row(
+                                    modifier = Modifier.padding(15.dp)
+                                ) {
+                                    Text(
+                                        buildAnnotatedString {
+                                            withStyle(style = SpanStyle(fontSize = 12.sp)) {
+                                                withStyle(style = SpanStyle(color = Color.Gray)) {
+                                                    append("${questionModelState.size} results found for \"")
+                                                }
+                                                withStyle(
+                                                    style = SpanStyle(
+                                                        fontWeight = FontWeight.Bold,
+                                                        color = Color.LightGray
+                                                    )
+                                                ) {
+                                                    append(searchState)
+                                                }
+                                                withStyle(style = SpanStyle(color = Color.Gray)) {
+                                                    append("\".")
+                                                }
                                             }
                                         }
-                                    }
-                                )
-                            }
-                            LazyColumn(state = listState) {
-                                items(questionModelState) { item ->
-                                    QuestionsSimpleItemCard(item) {
-                                        navigateToDetail.invoke(it)
+                                    )
+                                }
+                                LazyColumn(state = listState) {
+                                    items(questionModelState) { item ->
+                                        QuestionsSimpleItemCard(item) {
+                                            navigateToDetail.invoke(it)
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
-                } else {
-                    if (newSearhState) {
-                        Box(
-                            modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            StackoverflowGifIcon(
-                                icon = R.drawable.no_search_results_found_gif,
-                                previewPage = Contains.QUESTION_SCREEN_ITEM_SIZE
-                            )
+                    } else {
+                        if (newSearhState) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                StackoverflowGifIcon(
+                                    icon = R.drawable.no_search_results_found_gif,
+                                    previewPage = Contains.QUESTION_SCREEN_ITEM_SIZE
+                                )
+                            }
                         }
                     }
                 }
             }
+        }
+        if (switchButtonZoom.value == true) {
+            QuestionsSwiftButtonZoom()
         }
     }
 }

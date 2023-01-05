@@ -22,9 +22,10 @@ class SharedDataStore(private val context: Context) {
             name = Contains.PACKAGE_NAME
         )
         val SCROLLBAR_DETAIL = booleanPreferencesKey("scrollbar_detail")
+        val SWITCH_BUTTON_ZOOM = booleanPreferencesKey("switch_button_zoom")
     }
 
-    //-- AnimationTooltips --
+    //ScroolBar
     val getScrollbarDetail: Flow<Boolean?> = context.dataStore.data
         .map { preferences ->
             preferences[SCROLLBAR_DETAIL] ?: true
@@ -33,6 +34,18 @@ class SharedDataStore(private val context: Context) {
     suspend fun saveScrollbarDetail(visible: Boolean) {
         context.dataStore.edit { preferences ->
             preferences[SCROLLBAR_DETAIL] = visible
+        }
+    }
+
+    //SwitchButton
+    val getQuestionsScreenSwitchButtonZoom: Flow<Boolean?> = context.dataStore.data
+        .map { preferences ->
+            preferences[SWITCH_BUTTON_ZOOM] ?: true
+        }
+
+    suspend fun saveQuestionsScreenSwitchButtonZoom(visible: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[SWITCH_BUTTON_ZOOM] = visible
         }
     }
 
