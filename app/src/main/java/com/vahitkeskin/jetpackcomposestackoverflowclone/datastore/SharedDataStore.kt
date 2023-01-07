@@ -21,8 +21,8 @@ class SharedDataStore(private val context: Context) {
         private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
             name = Contains.PACKAGE_NAME
         )
-        val SCROLLBAR_DETAIL = booleanPreferencesKey("scrollbar_detail")
-        val SWITCH_BUTTON_ZOOM = booleanPreferencesKey("switch_button_zoom")
+        val SCROLLBAR_DETAIL = booleanPreferencesKey(Contains.DATASTORE_KEY_SCROLLBAR_DETAIL)
+        val SWITCH_BUTTON_ZOOM = booleanPreferencesKey(Contains.DATASTORE_KEY_SWITCH_BUTTON_ZOOM)
     }
 
     //ScroolBar

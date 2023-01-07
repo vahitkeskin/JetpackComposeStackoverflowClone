@@ -1,6 +1,5 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.screens.questions
 
-import android.text.Html
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.core.text.HtmlCompat
 import com.vahitkeskin.jetpackcomposestackoverflowclone.R
 import com.vahitkeskin.jetpackcomposestackoverflowclone.component.StackoverflowExpandableText
 import com.vahitkeskin.jetpackcomposestackoverflowclone.model.Item
@@ -84,7 +84,7 @@ fun QuestionsSimpleItemCard(
                     }
                 )
                 StackoverflowExpandableText(
-                    text = Html.fromHtml(item.body).toString(),
+                    text = HtmlCompat.fromHtml(item.body, HtmlCompat.FROM_HTML_MODE_LEGACY).toString(),
                     modifier = Modifier.padding(8.dp),
                     color = Color.LightGray
                 )

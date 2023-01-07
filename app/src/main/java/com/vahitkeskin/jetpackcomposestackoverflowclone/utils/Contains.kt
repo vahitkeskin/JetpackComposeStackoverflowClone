@@ -48,4 +48,8 @@ object Contains {
     const val HTML_CSS_QUERY_CODE = "code"
     const val HTML_CSS_QUERY_IMG = "img"
     const val HTML_CSS_QUERY_SRC = "src"
+
+    //DATASTORE KEYS
+    const val DATASTORE_KEY_SCROLLBAR_DETAIL = "scrollbar_detail"
+    const val DATASTORE_KEY_SWITCH_BUTTON_ZOOM = "switch_button_zoom"
 }
