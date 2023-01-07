@@ -25,6 +25,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.vahitkeskin.jetpackcomposestackoverflowclone.R
 import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.home.HomeScreenTagsItem
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.*
+import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.noRippleClickable
 import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.HomeDetailViewEvent
 import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.HomeDetailViewModel
@@ -58,9 +59,10 @@ fun HomeDetailScreen(
         }
     }
 
-    val mTitle = Jsoup.parse(viewState.data?.body.orEmpty()).select("p").text()
-    val mCode = Jsoup.parse(viewState.data?.body.orEmpty()).select("code").text()
-    val image = Jsoup.parse(viewState.data?.body.orEmpty()).select("img").first()?.absUrl("src")
+    val mTitle = Jsoup.parse(viewState.data?.body.orEmpty()).select(Contains.HTML_CSS_QUERY_P).text()
+    val mCode = Jsoup.parse(viewState.data?.body.orEmpty()).select(Contains.HTML_CSS_QUERY_CODE).text()
+    val image = Jsoup.parse(viewState.data?.body.orEmpty()).select(Contains.HTML_CSS_QUERY_IMG)
+        .first()?.absUrl(Contains.HTML_CSS_QUERY_SRC)
 
     Column(
         modifier = Modifier
@@ -71,6 +73,7 @@ fun HomeDetailScreen(
         verticalArrangement = Arrangement.Top
     ) {
         Row(
+            modifier = Modifier.background(StackoverflowDark),
             verticalAlignment = Alignment.Top
         ) {
             Column(
@@ -131,6 +134,7 @@ fun HomeDetailScreen(
 
                 AndroidView(
                     modifier = Modifier
+                        .background(StackoverflowDark)
                         .fillMaxWidth(),
                     factory = { CodeView(it) },
                     update = { codeView ->
@@ -154,7 +158,7 @@ fun HomeDetailScreen(
                         }
                     }
                     Row (
-                        modifier = Modifier.fillMaxWidth().padding(top = 10.dp),
+                        modifier = Modifier.fillMaxWidth().padding(top = 10.dp).background(StackoverflowDark),
                         horizontalArrangement = Arrangement.End,
                         verticalAlignment = Alignment.CenterVertically
                     ) {

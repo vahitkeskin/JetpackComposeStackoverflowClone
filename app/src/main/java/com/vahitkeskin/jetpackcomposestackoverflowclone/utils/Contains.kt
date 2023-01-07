@@ -38,4 +38,10 @@ object Contains {
     const val QUESTION_SCREEN_FAB = "question_screen_fab"
     const val QUESTION_SCREEN_ITEM_SIZE = "question_screen_item_size"
     const val BOTTOM_BAR_USERS_ICON = "bottom_bar_users_icon"
+
+    //HTML CSS QUERY
+    const val HTML_CSS_QUERY_P = "p"
+    const val HTML_CSS_QUERY_CODE = "code"
+    const val HTML_CSS_QUERY_IMG = "img"
+    const val HTML_CSS_QUERY_SRC = "src"
 }
