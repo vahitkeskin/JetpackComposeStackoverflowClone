@@ -19,7 +19,7 @@ import androidx.constraintlayout.compose.MotionLayout
 import androidx.constraintlayout.compose.MotionScene
 import coil.compose.rememberAsyncImagePainter
 import com.vahitkeskin.jetpackcomposestackoverflowclone.R
-import com.vahitkeskin.jetpackcomposestackoverflowclone.model.usersmodel.Item
+import com.vahitkeskin.jetpackcomposestackoverflowclone.model.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowBlue
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.prettyCount
 import kotlinx.coroutines.*

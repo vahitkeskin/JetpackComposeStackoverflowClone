@@ -4,8 +4,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.*
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
-import com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel.Item
+import com.vahitkeskin.jetpackcomposestackoverflowclone.model.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.HomeViewModel
 
 
@@ -16,7 +15,6 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.HomeViewModel
 
 @Composable
 fun HomeScreen(
-    navController: NavController,
     homeViewModel: HomeViewModel = hiltViewModel(),
     navigateToDetail: (Item) -> Unit
 ) {

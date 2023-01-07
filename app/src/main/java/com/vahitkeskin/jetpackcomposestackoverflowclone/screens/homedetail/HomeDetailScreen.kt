@@ -1,10 +1,13 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.screens.homedetail
 
 import android.widget.Toast
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
@@ -24,7 +27,10 @@ import br.tiagohm.codeview.Theme
 import coil.compose.rememberAsyncImagePainter
 import com.vahitkeskin.jetpackcomposestackoverflowclone.R
 import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.home.HomeScreenTagsItem
-import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.*
+import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowBlue
+import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowDark
+import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowPointSelect
+import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowPointUnSelect
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.noRippleClickable
 import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.HomeDetailViewEvent

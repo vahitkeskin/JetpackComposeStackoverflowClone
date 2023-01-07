@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.palette.graphics.Palette
 import com.skydoves.landscapist.glide.GlideImage
 import com.skydoves.landscapist.palette.BitmapPalette
-import com.vahitkeskin.jetpackcomposestackoverflowclone.model.questionsmodel.Item
+import com.vahitkeskin.jetpackcomposestackoverflowclone.model.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowBlue
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowPointSelect
 

@@ -23,10 +23,11 @@ fun HomeScreenTagsItem(tags: String) {
         modifier = Modifier
             .clip(RoundedCornerShape(10))
             .background(StackoverflowTagsBg)
-            .padding(top = 4.dp, bottom = 4.dp, end = 8.dp, start = 8.dp)
     ) {
         Text(
-            modifier = Modifier.background(StackoverflowTagsBg),
+            modifier = Modifier
+                .background(StackoverflowTagsBg)
+                .padding(top = 4.dp, bottom = 4.dp, end = 8.dp, start = 8.dp),
             text = tags,
             color = StackoverflowTagsText
         )

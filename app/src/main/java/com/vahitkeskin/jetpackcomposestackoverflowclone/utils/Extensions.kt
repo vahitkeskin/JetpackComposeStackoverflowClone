@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import java.text.DecimalFormat
+import java.util.concurrent.TimeUnit
 import kotlin.math.floor
 import kotlin.math.log10
 import kotlin.math.pow
@@ -46,9 +47,12 @@ fun prettyCount(number: Number): String? {
     val base = value / 3
     return if (value >= 3 && base < suffix.size) {
         DecimalFormat("#0.0")
-            .format(numValue / 10.0.pow((base * 3)
-            .toDouble())
-        ) + suffix[base]
+            .format(
+                numValue / 10.0.pow(
+                    (base * 3)
+                        .toDouble()
+                )
+            ) + suffix[base]
     } else {
         DecimalFormat("#,##0").format(numValue)
     }
@@ -84,4 +88,27 @@ fun Modifier.simpleVerticalScrollbar(
             )
         }
     }
+}
+
+fun Long.whenTime() : String{
+    val times: List<Long> = listOf(
+        TimeUnit.DAYS.toMillis(365),
+        TimeUnit.DAYS.toMillis(30),
+        TimeUnit.DAYS.toMillis(1),
+        TimeUnit.HOURS.toMillis(1),
+        TimeUnit.MINUTES.toMillis(1),
+        TimeUnit.SECONDS.toMillis(1)
+    )
+    val timesString = listOf("year", "month", "day", "hour", "mins", "secs")
+    val res = StringBuffer()
+    for (i in times.indices) {
+        val current: Long = times[i]
+        val temp = this / current
+        if (temp > 0) {
+            res.append(temp).append(" ").append(timesString[i])
+                .append(if (temp != 1L) "s" else "").append(" ago")
+            break
+        }
+    }
+    return if ("" == res.toString()) "0 secs ago" else res.toString()
 }

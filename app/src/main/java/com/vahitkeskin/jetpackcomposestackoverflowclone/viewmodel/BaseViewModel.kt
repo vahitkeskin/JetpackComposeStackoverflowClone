@@ -2,7 +2,8 @@ package com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.*
+import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.IViewEvent
+import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.IViewState
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 

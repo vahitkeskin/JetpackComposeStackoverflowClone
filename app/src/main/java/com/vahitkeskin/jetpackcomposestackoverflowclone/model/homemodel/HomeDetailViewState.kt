@@ -1,5 +1,6 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel
 
+import com.vahitkeskin.jetpackcomposestackoverflowclone.model.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.IViewState
 
 /**

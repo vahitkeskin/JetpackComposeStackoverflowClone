@@ -7,17 +7,11 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.vahitkeskin.jetpackcomposestackoverflowclone.R
-import com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel.Item
+import com.vahitkeskin.jetpackcomposestackoverflowclone.model.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowBlue
 
 /**
@@ -29,7 +23,6 @@ fun HomeScreenItem(
     item: Item,
     navigateToDetail: (Item) -> Unit
 ) {
-    val context = LocalContext.current
     Card(
         modifier = Modifier
             .padding(top = 12.dp, bottom = 6.dp, end = 15.dp, start = 15.dp)

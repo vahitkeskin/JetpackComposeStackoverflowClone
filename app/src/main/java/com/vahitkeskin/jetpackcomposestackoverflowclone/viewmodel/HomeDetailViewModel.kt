@@ -1,8 +1,8 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel
 
 import androidx.lifecycle.SavedStateHandle
+import com.vahitkeskin.jetpackcomposestackoverflowclone.model.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel.HomeDetailViewState
-import com.vahitkeskin.jetpackcomposestackoverflowclone.model.homemodel.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.screens.IViewEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
