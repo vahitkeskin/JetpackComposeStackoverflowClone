@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace 'com.vahitkeskin.jetpackcomposestackoverflowclone'
-    compileSdk 33
+    compileSdk project.compileSdkVersion
 
     defaultConfig {
         applicationId "com.vahitkeskin.jetpackcomposestackoverflowclone"
-        minSdk 24
-        targetSdk 33
+        minSdk project.minSdkVersion
+        targetSdk project.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -97,8 +97,10 @@ dependencies {
     //CodeView
     implementation "com.github.tiagohm:CodeView:0.4.0"
 
-    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.0"
+    //Constraint Layout
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
 
+    //TextFlow
     implementation "io.github.oleksandrbalan:textflow:1.1.0"
 
     //Palette Circle
@@ -112,4 +114,15 @@ dependencies {
     //Timber & Logger
     implementation 'com.jakewharton.timber:timber:5.0.1'
     implementation 'com.orhanobut:logger:2.2.0'
+
+    //Chucker
+    debugImplementation "com.github.chuckerteam.chucker:library:develop-SNAPSHOT"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:develop-SNAPSHOT"
+
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+}
+
+kapt {
+    correctErrorTypes = true
 }

@@ -16,6 +16,7 @@ object Contains {
     const val VOTES = " votes"
     const val ANSWERS = " answers"
     const val VIEWS = " views"
+    const val CONTENT_LENGTH = 250_000L
 
     //SCREENS
     const val HOME_SCREEN = "home"
@@ -52,4 +53,8 @@ object Contains {
     //DATASTORE KEYS
     const val DATASTORE_KEY_SCROLLBAR_DETAIL = "scrollbar_detail"
     const val DATASTORE_KEY_SWITCH_BUTTON_ZOOM = "switch_button_zoom"
+
+    //CHUCKER headerNames
+    const val HEADERNAMES_CONTENT_TYPE = "Content-Type"
+    const val HEADERNAMES_APPLICATION_JSON = "application/json"
 }
