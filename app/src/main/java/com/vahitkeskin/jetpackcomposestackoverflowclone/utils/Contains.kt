@@ -12,6 +12,10 @@ object Contains {
     const val UTF_8 = "UTF-8"
     const val FILTER_BY_USER = "Filter by user"
     const val DEFAULT_MINIMUM_TEXT_LINE = 2
+    const val ASKED = " asked"
+    const val VOTES = " votes"
+    const val ANSWERS = " answers"
+    const val VIEWS = " views"
 
     //SCREENS
     const val HOME_SCREEN = "home"

@@ -9,6 +9,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.sp
 import com.vahitkeskin.jetpackcomposestackoverflowclone.model.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowBlue
+import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.prettyCount
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.whenTime
 
@@ -27,7 +28,7 @@ fun StackoverflowPostUserInfo(item: Item) {
                 append(" " + prettyCount(item.owner.reputation).orEmpty())
             }
             withStyle(style = SpanStyle(Color.Gray, fontSize = 12.sp)) {
-                append( " asked")
+                append(Contains.ASKED)
             }
             withStyle(style = SpanStyle(Color.Gray, fontSize = 12.sp)) {
                 append(" " + item.last_edit_date.whenTime())

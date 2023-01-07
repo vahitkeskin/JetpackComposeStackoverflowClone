@@ -21,6 +21,7 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.R
 import com.vahitkeskin.jetpackcomposestackoverflowclone.component.StackoverflowExpandableText
 import com.vahitkeskin.jetpackcomposestackoverflowclone.model.Item
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowBlue
+import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains
 import eu.wewox.textflow.TextFlow
 import eu.wewox.textflow.TextFlowObstacleAlignment
 
@@ -41,7 +42,8 @@ fun QuestionsSimpleItemCard(
                 bottom = 15.dp,
                 start = 15.dp,
                 end = 15.dp
-            ).clickable {
+            )
+            .clickable {
                 navigateToDetail.invoke(item)
             }
     ) {
@@ -54,15 +56,15 @@ fun QuestionsSimpleItemCard(
                 horizontalAlignment = Alignment.End
             ) {
                 Text(
-                    text = "${item.score} votes",
+                    text = item.score.toString() + Contains.VOTES,
                     color = Color.LightGray
                 )
                 Text(
-                    text = "${item.answer_count} answers",
+                    text = item.answer_count.toString() + Contains.ANSWERS,
                     color = Color.Gray
                 )
                 Text(
-                    text = "${item.view_count} views",
+                    text = item.view_count.toString() + Contains.VIEWS,
                     color = Color.Gray
                 )
             }
