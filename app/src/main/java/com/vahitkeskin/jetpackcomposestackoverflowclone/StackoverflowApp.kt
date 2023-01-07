@@ -8,8 +8,13 @@ import com.facebook.flipper.plugins.inspector.DescriptorMapping
 import com.facebook.flipper.plugins.inspector.InspectorFlipperPlugin
 import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
 import com.facebook.soloader.SoLoader
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.FormatStrategy
+import com.orhanobut.logger.Logger
+import com.orhanobut.logger.PrettyFormatStrategy
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.FlipperNetworkObject
 import dagger.hilt.android.HiltAndroidApp
+import timber.log.Timber
 
 /**
  * @authot: Vahit Keskin
@@ -29,5 +34,23 @@ class StackoverflowApp: Application() {
             clint.addPlugin(networkFlipperPlugin)
             clint.start()
         }
+
+        //Logger
+        val formatStrategy: FormatStrategy = PrettyFormatStrategy
+            .newBuilder()
+            .showThreadInfo(true)
+            .methodCount(1)
+            .methodOffset(5)
+            .tag("")
+            .build()
+        Logger.addLogAdapter(AndroidLogAdapter(formatStrategy))
+
+        //Timber
+        Timber.plant(object: Timber.DebugTree() {
+            override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
+                Logger.log(priority, "-$tag", message, t)
+            }
+        })
+        Timber.d("Inside App!")
     }
 }

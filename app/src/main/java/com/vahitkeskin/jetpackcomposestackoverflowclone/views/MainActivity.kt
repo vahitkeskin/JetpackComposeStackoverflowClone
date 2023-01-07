@@ -11,11 +11,13 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.component.StackoverflowS
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.JetpackComposeStackoverflowCloneTheme
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains.APP_NAME
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Timber.d("onCreate: Inside App")
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         setContent {
             JetpackComposeStackoverflowCloneTheme(

@@ -109,4 +109,7 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences-rxjava2:$datastore_version"
     implementation "androidx.datastore:datastore-preferences-rxjava3:$datastore_version"
 
+    //Timber & Logger
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+    implementation 'com.orhanobut:logger:2.2.0'
 }
