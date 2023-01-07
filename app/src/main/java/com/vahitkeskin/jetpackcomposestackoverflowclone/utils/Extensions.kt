@@ -1,10 +1,15 @@
 package com.vahitkeskin.jetpackcomposestackoverflowclone.utils
 
+import androidx.annotation.DrawableRes
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.text.InlineTextContent
+import androidx.compose.foundation.text.appendInlineContent
+import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -14,8 +19,13 @@ import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.*
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.vahitkeskin.jetpackcomposestackoverflowclone.R
+import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowBlue
 import java.text.DecimalFormat
 import java.util.concurrent.TimeUnit
 import kotlin.math.floor
@@ -90,7 +100,7 @@ fun Modifier.simpleVerticalScrollbar(
     }
 }
 
-fun Long.whenTime() : String{
+fun Long.whenTime(): String {
     val times: List<Long> = listOf(
         TimeUnit.DAYS.toMillis(365),
         TimeUnit.DAYS.toMillis(30),
@@ -111,4 +121,39 @@ fun Long.whenTime() : String{
         }
     }
     return if ("" == res.toString()) "0 secs ago" else res.toString()
+}
+
+fun String.startDrawableText(text: String): AnnotatedString {
+    return buildAnnotatedString {
+        appendInlineContent(
+            id = this@startDrawableText,
+            alternateText = Contains.ALTERNATE_TEXT_ICON
+        )
+        withStyle(style = SpanStyle(color = StackoverflowBlue)) {
+            append(text)
+        }
+    }
+}
+
+fun String.startDrawableIcon(
+    @DrawableRes iconId: Int
+): Map<String, InlineTextContent> {
+    return mapOf(
+        Pair(
+            this,
+            InlineTextContent(
+                Placeholder(
+                    width = 18.sp,
+                    height = 12.sp,
+                    placeholderVerticalAlign = PlaceholderVerticalAlign.AboveBaseline
+                )
+            ) {
+                Icon(
+                    painter = painterResource(id = iconId),
+                    contentDescription = null,
+                    modifier = Modifier.padding(end = 5.dp)
+                )
+            }
+        )
+    )
 }

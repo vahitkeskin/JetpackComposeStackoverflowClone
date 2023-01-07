@@ -53,13 +53,8 @@ class AppModule {
     ): OkHttpClient =
         OkHttpClient.Builder()
             .addNetworkInterceptor(flipperOkhttpInterceptor)
-            .addInterceptor(
-                if (BuildConfig.DEBUG)
-                    chuckInterceptor
-                else
-                    authInterceptor
-            )
-            .addInterceptor(httpLoggingInterceptor).build()
+            .addInterceptor(if (BuildConfig.DEBUG) chuckInterceptor else authInterceptor)
+            .build()
 
     @Singleton
     @Provides
@@ -76,14 +71,18 @@ class AppModule {
     fun provideChuckerInterceptor(
         @ApplicationContext context: Context,
         chuckerCollector: ChuckerCollector
-    ): ChuckerInterceptor =
-        ChuckerInterceptor.Builder(context).collector(chuckerCollector)
+    ): ChuckerInterceptor {
+        return ChuckerInterceptor
+            .Builder(context)
+            .collector(chuckerCollector)
             .maxContentLength(Contains.CONTENT_LENGTH)
             .redactHeaders(
-                Contains.HEADERNAMES_CONTENT_TYPE, Contains.HEADERNAMES_APPLICATION_JSON
+                Contains.HEADERNAMES_CONTENT_TYPE,
+                Contains.HEADERNAMES_APPLICATION_JSON
             )
             .alwaysReadResponseBody(true)
             .build()
+    }
 
     @Singleton
     @Provides
@@ -92,7 +91,7 @@ class AppModule {
     ): ChuckerCollector = ChuckerCollector(
         context = context,
         showNotification = true,
-        retentionPeriod = RetentionManager.Period.ONE_HOUR
+        retentionPeriod = RetentionManager.Period.FOREVER
     )
 
     @Provides

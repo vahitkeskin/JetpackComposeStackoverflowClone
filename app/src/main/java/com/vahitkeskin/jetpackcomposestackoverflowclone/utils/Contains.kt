@@ -17,6 +17,8 @@ object Contains {
     const val ANSWERS = " answers"
     const val VIEWS = " views"
     const val CONTENT_LENGTH = 250_000L
+    const val STARTDRAWABLE_ICON_AND_TEXT_ID = "inlineContent"
+    const val ALTERNATE_TEXT_ICON = "[icon]"
 
     //SCREENS
     const val HOME_SCREEN = "home"
