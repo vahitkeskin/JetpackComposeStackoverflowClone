@@ -4,11 +4,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -19,8 +20,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vahitkeskin.jetpackcomposestackoverflowclone.R
-import com.vahitkeskin.jetpackcomposestackoverflowclone.component.QuestionsZoomScreenSkip
+import com.vahitkeskin.jetpackcomposestackoverflowclone.datastore.SharedDataStore
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowOrange
+import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains
+import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.noRippleClickable
+import kotlinx.coroutines.launch
 
 /**
  * @authot: Vahit Keskin
@@ -28,7 +32,15 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowOr
  */
 @Composable
 fun QuestionsSwiftButtonZoom() {
+    val context = LocalContext.current
+    val dataStore = SharedDataStore(context)
+    val coroutineScope = rememberCoroutineScope()
     Box(
+        modifier = Modifier.noRippleClickable {
+            coroutineScope.launch {
+                dataStore.saveQuestionsScreenSwitchButtonZoom(false)
+            }
+        },
         contentAlignment = Alignment.BottomEnd
     ) {
         Column(
@@ -42,7 +54,7 @@ fun QuestionsSwiftButtonZoom() {
             )
             Text(
                 text = buildAnnotatedString {
-                    append(stringResource(id = R.string.text_zoom))
+                    append(Contains.TEXT_ZOOM)
                     addStyle(
                         style = SpanStyle(
                             color = Color.White,
@@ -63,7 +75,10 @@ fun QuestionsSwiftButtonZoom() {
                 color = StackoverflowOrange
             )
         }
-        QuestionsZoomScreenSkip()
+        QuestionsZoomScreenSkip(
+            coroutineScope = coroutineScope,
+            dataStore = dataStore
+        )
     }
 }
 

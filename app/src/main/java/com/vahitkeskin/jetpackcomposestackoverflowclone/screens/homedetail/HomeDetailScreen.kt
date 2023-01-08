@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -40,7 +39,6 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.HomeDetailView
 import com.vahitkeskin.jetpackcomposestackoverflowclone.viewmodel.HomeDetailViewModel
 import kotlinx.coroutines.launch
 import org.jsoup.Jsoup
-import timber.log.Timber
 
 /**
  * @authot: Vahit Keskin
@@ -73,11 +71,6 @@ fun HomeDetailScreen(
     val mCode = Jsoup.parse(viewState.data?.body.orEmpty()).select(Contains.HTML_CSS_QUERY_CODE).text()
     val image = Jsoup.parse(viewState.data?.body.orEmpty()).select(Contains.HTML_CSS_QUERY_IMG)
         .first()?.absUrl(Contains.HTML_CSS_QUERY_SRC)
-
-    Timber.d("In the HomeDetailScreen score: $score")
-    Timber.d("In the HomeDetailScreen mTitle: $mTitle")
-    Timber.d("In the HomeDetailScreen mCode: $mCode, ${mCode.isEmpty()}, ${mCode.isBlank()}, ${mCode.length}")
-    Timber.d("In the HomeDetailScreen image: $image")
 
     Box {
         if (mTitle.isNotEmpty() || mCode.isNotEmpty() || image?.isNotEmpty() == true) {
@@ -211,7 +204,7 @@ fun HomeDetailScreen(
                     icon = R.drawable.no_search_results_found_gif,
                     previewPage = Contains.QUESTION_SCREEN_ITEM_SIZE
                 )
-                StackoverflowMarqueeText(stringResource(id = R.string.text_empty_detail))
+                StackoverflowMarqueeText(Contains.TEXT_EMPTY_DETAIL)
             }
         }
     }

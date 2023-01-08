@@ -17,6 +17,9 @@ object Contains {
     const val VIEWS = " views"
     const val STARTDRAWABLE_ICON_AND_TEXT_ID = "inlineContent"
     const val ALTERNATE_TEXT_ICON = "[icon]"
+    const val TEXT_ZOOM = "If the user profile photo and name popup next to the ScrollBar bothers you, you can turn it on or off at any time from here."
+    const val TEXT_EMPTY_DETAIL = "The details of the post could not be reached."
+    const val TEXT_NOT_WAIT = "If you don't want to wait, click anywhere. \uD83D\uDE0A "
 
     //SCREENS
     const val HOME_SCREEN = "home"
