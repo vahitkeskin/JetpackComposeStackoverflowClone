@@ -24,7 +24,7 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.noRippleClickable
  */
 @Composable
 fun StackoverflowTopAppBar(
-    isBackButton: Boolean? = true,
+    isBackButton: Boolean? = false,
     switchButtonState: Boolean? = true,
     navController: NavHostController
 ) {
