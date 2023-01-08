@@ -109,7 +109,14 @@ fun Long.whenTime(): String {
         TimeUnit.MINUTES.toMillis(1),
         TimeUnit.SECONDS.toMillis(1)
     )
-    val timesString = listOf("year", "month", "day", "hour", "mins", "secs")
+    val timesString = listOf(
+        Contains.YEAR,
+        Contains.MONTH,
+        Contains.DAY,
+        Contains.HOUR,
+        Contains.MINS,
+        Contains.SECS
+    )
     val res = StringBuffer()
     for (i in times.indices) {
         val current: Long = times[i]

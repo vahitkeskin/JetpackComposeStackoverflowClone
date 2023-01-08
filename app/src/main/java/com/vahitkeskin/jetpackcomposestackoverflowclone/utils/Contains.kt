@@ -9,14 +9,12 @@ object Contains {
     const val BASE_URL = "https://api.stackexchange.com"
     const val APP_NAME = "Stackoverflow Clone"
     const val PACKAGE_NAME = "com.vahitkeskin.jetpackcomposestackoverflowclone"
-    const val UTF_8 = "UTF-8"
     const val FILTER_BY_USER = "Filter by user"
     const val DEFAULT_MINIMUM_TEXT_LINE = 2
     const val ASKED = " asked"
     const val VOTES = " votes"
     const val ANSWERS = " answers"
     const val VIEWS = " views"
-    const val CONTENT_LENGTH = 250_000L
     const val STARTDRAWABLE_ICON_AND_TEXT_ID = "inlineContent"
     const val ALTERNATE_TEXT_ICON = "[icon]"
 
@@ -57,6 +55,15 @@ object Contains {
     const val DATASTORE_KEY_SWITCH_BUTTON_ZOOM = "switch_button_zoom"
 
     //CHUCKER headerNames
+    const val CONTENT_LENGTH = 250_000L
     const val HEADERNAMES_CONTENT_TYPE = "Content-Type"
     const val HEADERNAMES_APPLICATION_JSON = "application/json"
+
+    //TIME TYPES
+    const val YEAR = "year"
+    const val MONTH = "month"
+    const val DAY = "day"
+    const val HOUR = "hour"
+    const val MINS = "mins"
+    const val SECS = "secs"
 }
