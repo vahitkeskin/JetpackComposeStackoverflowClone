@@ -23,7 +23,8 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.R
 import com.vahitkeskin.jetpackcomposestackoverflowclone.datastore.SharedDataStore
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowOrange
 import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains
-import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.noRippleClickable
+import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.explodeOnClick
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /**
@@ -36,8 +37,12 @@ fun QuestionsSwiftButtonZoom() {
     val dataStore = SharedDataStore(context)
     val coroutineScope = rememberCoroutineScope()
     Box(
-        modifier = Modifier.noRippleClickable {
+        modifier = Modifier.explodeOnClick(
+            color = StackoverflowOrange,
+            repeatable = true
+        ) {
             coroutineScope.launch {
+                delay(750)
                 dataStore.saveQuestionsScreenSwitchButtonZoom(false)
             }
         },

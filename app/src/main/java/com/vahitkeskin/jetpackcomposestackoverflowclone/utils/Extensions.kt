@@ -24,7 +24,6 @@ import androidx.compose.ui.text.*
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.vahitkeskin.jetpackcomposestackoverflowclone.R
 import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowBlue
 import java.text.DecimalFormat
 import java.util.concurrent.TimeUnit
