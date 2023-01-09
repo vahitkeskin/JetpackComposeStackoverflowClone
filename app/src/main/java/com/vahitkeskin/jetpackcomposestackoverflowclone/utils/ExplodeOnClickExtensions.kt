@@ -12,6 +12,7 @@ import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
+import com.vahitkeskin.jetpackcomposestackoverflowclone.ui.theme.StackoverflowOrange
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlin.math.pow
@@ -33,7 +34,7 @@ private val W: Float = 1.dp2Px()
 
 @SuppressLint("UnnecessaryComposedModifier")
 fun Modifier.explodeOnClick(
-    color: Color = Color.Black,
+    color: Color = StackoverflowOrange,
     durationMillis: Int = 1000,
     easing: Easing = LinearEasing,
     repeatable: Boolean = false,

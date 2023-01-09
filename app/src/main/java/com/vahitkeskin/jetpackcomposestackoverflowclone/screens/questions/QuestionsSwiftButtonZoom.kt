@@ -37,15 +37,13 @@ fun QuestionsSwiftButtonZoom() {
     val dataStore = SharedDataStore(context)
     val coroutineScope = rememberCoroutineScope()
     Box(
-        modifier = Modifier.explodeOnClick(
-            color = StackoverflowOrange,
-            repeatable = true
-        ) {
-            coroutineScope.launch {
-                delay(750)
-                dataStore.saveQuestionsScreenSwitchButtonZoom(false)
-            }
-        },
+        modifier = Modifier
+            .explodeOnClick(repeatable = false) {
+                coroutineScope.launch {
+                    delay(750)
+                    dataStore.saveQuestionsScreenSwitchButtonZoom(false)
+                }
+            },
         contentAlignment = Alignment.BottomEnd
     ) {
         Column(
