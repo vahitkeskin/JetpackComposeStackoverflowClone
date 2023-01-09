@@ -46,8 +46,8 @@ fun UsersScreen(
     var newSearhState by remember { mutableStateOf(false) }
 
     fun searchQuery(searchQuery: String ?= null) {
-        homeModelState.clear()
         coroutineScope.launch {
+            homeModelState.clear()
             usersViewModel.home(searchQuery.orEmpty()).items.forEach { item ->
                 homeModelState.add(item)
             }
@@ -66,6 +66,7 @@ fun UsersScreen(
             value = searchState,
             onValueChange = { newText ->
                 newSearhState = true
+                selectedIndex = -1 //A new search was made. Close open animations
                 if (newText.isEmpty()) {
                     searchQuery()
                 } else {
@@ -122,6 +123,7 @@ fun UsersScreen(
                     Icon(
                         modifier = Modifier.clickable {
                             searchState = ""
+                            selectedIndex = -1 //A new search was made. Close open animations
                             searchQuery()
                         },
                         painter = painterResource(id = R.drawable.ic_baseline_cancel_24),
