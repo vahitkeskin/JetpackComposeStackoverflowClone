@@ -1,11 +1,6 @@
 # JetpackComposeStackoverflowClone
 
 
-
-
-
-
-
 | image1 | image2 |
 | ------ | ------ |
 | ![1  gif home screen and detail open chucker](https://user-images.githubusercontent.com/36104238/211348276-3d2b9485-ac10-4695-b25d-1af1ec2a532d.gif) | ![2  gif questions full alert click close open hf](https://user-images.githubusercontent.com/36104238/211348572-18781852-e526-458e-8c91-978ad279fc16.gif)
@@ -14,4 +9,4 @@
 | image5 | image6 |
 | ![5  gif questions screen switch button and data store saved](https://user-images.githubusercontent.com/36104238/211352648-5ebc335e-698e-48bf-9ed7-573e9daccead.gif) | ![6  gif questions screen item scroll and item detail code zoom](https://user-images.githubusercontent.com/36104238/211352303-37c8ea7e-523f-4b44-a121-455e6c5919d1.gif)
 | image7 | image8 |
-| ![6  gif questions screen item scroll and item detail code zoom](https://user-images.githubusercontent.com/36104238/211352303-37c8ea7e-523f-4b44-a121-455e6c5919d1.gif) |
+| ![7  gif new search and vahit keskin post detail open](https://user-images.githubusercontent.com/36104238/211353014-0b5ee144-a155-49ac-895e-3c7ebdf3bbbb.gif) |
