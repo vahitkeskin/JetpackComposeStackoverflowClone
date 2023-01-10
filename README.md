@@ -12,8 +12,9 @@
 | ![13 image](https://user-images.githubusercontent.com/36104238/211370782-7a66b88d-4891-4a91-aafa-f3222bb0b596.png) | ![14 image](https://user-images.githubusercontent.com/36104238/211370785-f7611d43-016f-42dd-9c7a-425f240c98d8.png) | ![10 image](https://user-images.githubusercontent.com/36104238/211370775-fe47defc-f5dc-4f72-b296-c9bea3867a10.png)| ![11 image](https://user-images.githubusercontent.com/36104238/211370779-476f0222-82ae-47cc-98a8-3cb158b50c88.png)
 
 - [X] Jetpack Compose
-    <br><br>
-    [![Developer Android - Jetpack Compose](https://user-images.githubusercontent.com/36104238/211399588-0f0756a5-98ce-4403-b61c-02f0564786e7.png)]
+  <br><br>
+    ![Developer Android - Jetpack Compose](https://user-images.githubusercontent.com/36104238/211399588-0f0756a5-98ce-4403-b61c-02f0564786e7.png)
+  <br><br>
   - Jetpack Compose is Android’s recommended modern toolkit for building native UI. It simplifies and accelerates UI development on Android. Quickly bring your app to life with less code, powerful tools, and intuitive Kotlin APIs.<br><br>
     [![Everything Is AWESOME](https://user-images.githubusercontent.com/36104238/211627820-9e96b1bc-eaff-4b10-a3cf-8dfbfaee0d6f.png)](https://www.youtube.com/watch?v=uRfMcO7pwfk "Developer Android - Jetpack Compose")
     <br><br>
