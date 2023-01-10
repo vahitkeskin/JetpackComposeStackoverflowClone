@@ -13,10 +13,10 @@
 
 - [X] Jetpack Compose
   - Jetpack Compose is Android’s recommended modern toolkit for building native UI. It simplifies and accelerates UI development on Android. Quickly bring your app to life with less code, powerful tools, and intuitive Kotlin APIs.<br><br>
-    ![My IDE](https://user-images.githubusercontent.com/36104238/211399972-e21af3af-6a59-4f2e-92f9-5ed956a8fce1.png)
     [![Developer Android - Jetpack Compose](https://user-images.githubusercontent.com/36104238/211399588-0f0756a5-98ce-4403-b61c-02f0564786e7.png)](https://www.youtube.com/watch?v=uRfMcO7pwfk "Developer Android - Jetpack Compose")
+  - ![My IDE](https://user-images.githubusercontent.com/36104238/211399972-e21af3af-6a59-4f2e-92f9-5ed956a8fce1.png)
 - [X] Flipper
-  - Flipper is a platform for debugging iOS, Android and React Native apps. Visualize, inspect, and control your apps from a simple desktop interface. Use Flipper as is or extend it using the plugin API.
+  - Flipper is a platform for debugging iOS, Android and React Native apps. Visualize, inspect, and control your apps from a simple desktop interface. Use Flipper as is or extend it using the plugin API. (Note: The device on the right does not belong to Flipper, I am using a device mirroring library called [scrcpy](https://github.com/Genymobile/scrcpy). for detailed information. Macbook's feature to get the flipper to the right.)
     ![Facebook - Flipper](https://user-images.githubusercontent.com/36104238/211399983-3b7a960f-65e3-480c-aa3d-f73ae70487d0.png)
 - [X] Chucker
   - Chucker simplifies the inspection of HTTP(S) requests/responses fired by your Android App. Chucker works as an OkHttp Interceptor persisting all those events inside your application, and providing a UI for inspecting and sharing their content.
