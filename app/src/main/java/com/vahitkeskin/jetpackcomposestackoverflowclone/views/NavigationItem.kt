@@ -10,8 +10,27 @@ import com.vahitkeskin.jetpackcomposestackoverflowclone.utils.Contains
 sealed class NavigationItem(
     var route: String, var icon: Int?, var title: String
 ) {
-    object Home: NavigationItem(Contains.HOME_SCREEN, R.drawable.ic_home_white,"Home")
-    object Questions: NavigationItem(Contains.QUESTIONS_SCREEN, R.drawable.ic_search_questions_white,"Questions")
-    object Users: NavigationItem(Contains.USERS_SCREEN, R.drawable.ic_search_users_white,"Users")
-    object HomeDetail: NavigationItem(Contains.HOME_DETAIL_SCREEN,null,"Home Detail")
+    object Home : NavigationItem(
+        route = Contains.HOME_SCREEN,
+        icon = R.drawable.ic_home_white,
+        title = Contains.NAVIGATION_ITEM_HOME
+    )
+
+    object Questions : NavigationItem(
+        route = Contains.QUESTIONS_SCREEN,
+        icon = R.drawable.ic_search_questions_white,
+        title = Contains.NAVIGATION_ITEM_QUESTIONS
+    )
+
+    object Users : NavigationItem(
+        route = Contains.USERS_SCREEN,
+        icon = R.drawable.ic_search_users_white,
+        title = Contains.NAVIGATION_ITEM_USERS
+    )
+
+    object HomeDetail : NavigationItem(
+        route = Contains.HOME_DETAIL_SCREEN,
+        icon = null,
+        title = Contains.NAVIGATION_ITEM_HOME_DETAIL
+    )
 }

@@ -21,11 +21,15 @@ object Contains {
     const val TEXT_EMPTY_DETAIL = "The details of the post could not be reached."
     const val TEXT_NOT_WAIT = "If you don't want to wait, click anywhere. \uD83D\uDE0A "
 
-    //SCREENS
+    //SCREENS & NAVIGATION ITEM NAMES
     const val HOME_SCREEN = "home"
     const val QUESTIONS_SCREEN = "questions"
     const val USERS_SCREEN = "users"
     const val HOME_DETAIL_SCREEN = "home_detail"
+    const val NAVIGATION_ITEM_HOME = "Home"
+    const val NAVIGATION_ITEM_QUESTIONS = "Questions"
+    const val NAVIGATION_ITEM_USERS = "Users"
+    const val NAVIGATION_ITEM_HOME_DETAIL = "Home Detail"
 
     //ENDPOINTS
     const val SITE = "site"
