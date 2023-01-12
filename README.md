@@ -1,4 +1,6 @@
-# Jetpack Compose StackoverflowClone
+![Jetpack Compose StackoverflowClone-1200x630](https://user-images.githubusercontent.com/36104238/212057067-012a93b9-3ab2-4755-bbad-5d5eab600549.jpg)
+
+<h1 align="center">Jetpack Compose StackoverflowClone</h1></br>
 
 > I tried to make Jetpack Compose project belonging to Stackoverflow. I hope you will like it.
 
