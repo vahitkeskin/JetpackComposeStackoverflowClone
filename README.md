@@ -1,4 +1,7 @@
-<h1 align="center">Jetpack Compose StackoverflowClone</h1></br>
+<h1 align="center">
+Jetpack Compose Stackoverflow Clone
+</h1>
+</br>
 
 > I tried to make Jetpack Compose project belonging to Stackoverflow. I hope you will like it.
 
