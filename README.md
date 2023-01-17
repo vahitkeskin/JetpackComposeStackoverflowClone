@@ -15,46 +15,46 @@ Jetpack Compose Stackoverflow Clone
 | ![13 image](https://user-images.githubusercontent.com/36104238/211370782-7a66b88d-4891-4a91-aafa-f3222bb0b596.png) | ![14 image](https://user-images.githubusercontent.com/36104238/211370785-f7611d43-016f-42dd-9c7a-425f240c98d8.png) | ![10 image](https://user-images.githubusercontent.com/36104238/211370775-fe47defc-f5dc-4f72-b296-c9bea3867a10.png)| ![11 image](https://user-images.githubusercontent.com/36104238/211370779-476f0222-82ae-47cc-98a8-3cb158b50c88.png)
 
 - [X] Jetpack Compose
-  <br><br>
+  <br><br><br>
     ![Developer Android - Jetpack Compose](https://user-images.githubusercontent.com/36104238/211399588-0f0756a5-98ce-4403-b61c-02f0564786e7.png)
-  <br><br>
+  <br><br><br>
   - Jetpack Compose is Android’s recommended modern toolkit for building native UI. It simplifies and accelerates UI development on Android. Quickly bring your app to life with less code, powerful tools, and intuitive Kotlin APIs.<br><br>
     [![Everything Is AWESOME](https://user-images.githubusercontent.com/36104238/211627820-9e96b1bc-eaff-4b10-a3cf-8dfbfaee0d6f.png)](https://www.youtube.com/watch?v=uRfMcO7pwfk "Developer Android - Jetpack Compose")
-    <br><br>
+    <br><br><br>
     ![My IDE](https://user-images.githubusercontent.com/36104238/211399972-e21af3af-6a59-4f2e-92f9-5ed956a8fce1.png)
 - [X] Flipper
   - Flipper is a platform for debugging iOS, Android and React Native apps. Visualize, inspect, and control your apps from a simple desktop interface. Use Flipper as is or extend it using the plugin API. (Note: The device on the right does not belong to Flipper, I am using a device mirroring library called [scrcpy](https://github.com/Genymobile/scrcpy). for detailed information. Macbook's feature to get the flipper to the right.)
-    <br><br>
+    <br><br><br>
     ![Facebook - Flipper](https://user-images.githubusercontent.com/36104238/211399983-3b7a960f-65e3-480c-aa3d-f73ae70487d0.png)
 - [X] Chucker
   - Chucker simplifies the inspection of HTTP(S) requests/responses fired by your Android App. Chucker works as an OkHttp Interceptor persisting all those events inside your application, and providing a UI for inspecting and sharing their content.
   - Apps using Chucker will display a notification showing a summary of ongoing HTTP activity. Tapping on the notification launches the full Chucker UI. Apps can optionally suppress the notification, and launch the Chucker UI directly from within their own interface.
-    <br><br>
+    <br><br><br>
     ![chucker-multiwindow](https://user-images.githubusercontent.com/36104238/211401262-a49490cd-ee45-438e-b668-8f77f4ce3984.gif)
 - [X] DataStore
   - Jetpack DataStore is a data storage solution that allows you to store key-value pairs or typed objects with protocol buffers. DataStore uses Kotlin coroutines and Flow to store data asynchronously, consistently, and transactionally.
   - If you're currently using SharedPreferences to store data, consider migrating to DataStore instead.
-    <br><br>
+    <br><br><br>
     ![1_3QAk_xrVEusv3mXLwfLNvw](https://user-images.githubusercontent.com/36104238/211402272-b3b3575f-6d70-4eb1-a008-c7373d9297f7.png)
 - [X] Flows on Android
   - In coroutines, a flow is a type that can emit multiple values sequentially, as opposed to suspend functions that return only a single value. For example, you can use a flow to receive live updates from a database.
-    <br><br>
+    <br><br><br>
     ![flow](https://user-images.githubusercontent.com/36104238/211402611-d9d3afba-77d3-4b33-a0f2-3a80073020d8.png)
 - [X] Selecting Colors with the Palette API
   - Good visual design is essential for a successful app, and color schemes are a primary component of design. The palette library is a support library that extracts prominent colors from images to help you create visually engaging apps.
   - You can use the palette library to design layout themes and apply custom colors to visual elements in your app. For example, you can use a palette to create a color-coordinated title card for a song based on its album cover or to adjust an app’s toolbar color when its background image changes. The Palette object gives you access to the colors in a Bitmap image while also providing six main color profiles from the bitmap to help inform your design choices.
-    <br><br>
+    <br><br><br>
     ![palette](https://user-images.githubusercontent.com/36104238/211402890-2bfab9de-e233-4dbf-9503-457362665709.png)
 - [X] Dependency injection with Hilt
   - Hilt is a dependency injection library for Android that reduces the boilerplate of doing manual dependency injection in your project. Doing manual dependency injection requires you to construct every class and its dependencies by hand, and to use containers to reuse and manage dependencies.
   - Hilt provides a standard way to use DI in your application by providing containers for every Android class in your project and managing their lifecycles automatically. Hilt is built on top of the popular DI library Dagger to benefit from the compile-time correctness, runtime performance, scalability, and Android Studio support that Dagger provides. For more information, see Hilt and Dagger.
   - This guide explains the basic concepts of Hilt and its generated containers. It also includes a demonstration of how to bootstrap an existing app to use Hilt.
-    <br><br>
+    <br><br><br>
     ![hilt](https://user-images.githubusercontent.com/36104238/211403240-b60a966c-4627-4cb6-8569-b234a368e137.png)
 - [X] Kotlin coroutines on Android
   - A coroutine is a concurrency design pattern that you can use on Android to simplify code that executes asynchronously. Coroutines were added to Kotlin in version 1.3 and are based on established concepts from other languages.
   - On Android, coroutines help to manage long-running tasks that might otherwise block the main thread and cause your app to become unresponsive. Over 50% of professional developers who use coroutines have reported seeing increased productivity. This topic describes how you can use Kotlin coroutines to address these problems, enabling you to write cleaner and more concise app code.
-    <br><br>
+    <br><br><br>
     ![download](https://user-images.githubusercontent.com/36104238/211403780-4bde30c8-cfe2-4c6e-9039-9e03d0812319.png)
 - [X] Animation
   - Jetpack Compose provides powerful and extensible APIs that make it easy to implement various animations in your app's UI. This document describes how to use these APIs as well as which API to use depending on your animation scenario.
